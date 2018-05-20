@@ -89,9 +89,10 @@ Copy the produced file to the Firefox installation directory. The file should be
 | Windows        | `C:\Program Files (x86)\Mozilla Firefox\mozilla.cfg`       |
 | Linux          | `/etc/firefox/syspref.js`, for older versions: `/etc/firefox/firefox.js` |
 | Linux (Debian) | `/etc/firefox-esr/firefox-esr.js`                          |
+| Linux (Gentoo, Archlinux) | `/usr/lib/firefox/mozilla.cfg`, might also be `/usr/lib32/` or `/usr/lib64/` |
 | OS X           | `/Applications/Firefox.app/Contents/Resources/mozilla.cfg` |
 
-#### Additional installation steps for Windows/OS X
+#### Additional installation steps for Windows / OS X / Gentoo / Archlinux
 
 Create `local-settings.js` in Firefox installation directory, with the following contents:
 
@@ -106,6 +107,7 @@ This file should be located at:
 | ------- | ------------------------------------------------------------ |
 | Windows | `C:\Program Files (x86)\Mozilla Firefox\defaults\pref\`      |
 | OS X    | `/Applications/Firefox.app/Contents/Resources/defaults/pref` |
+| Linux (Gentoo, Archlinux) | `/usr/lib/firefox/defaults/pref/`, might also be `/usr/lib32/` or `/usr/lib64/` |
 
 If `mozilla.cfg` still fails to load, you must add a blank comment to the top of `mozilla.cfg` like so:
 ```
@@ -562,6 +564,7 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * [Polaris - advance privacy technnology for the web](https://wiki.mozilla.org/Polaris)
 * [Mozilla Privacy Principles](https://wiki.mozilla.org/Privacy/Principles)
 * [List of Firefox "about:" URLs](https://developer.mozilla.org/en-US/Firefox/The_about_protocol)
+* [Policy Templates for Firefox](https://github.com/mozilla/policy-templates)
 * [Mozilla preferences for uber-geeks](https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Mozilla_preferences_for_uber-geeks)
 * [Privacy & Security related add-ons](https://addons.mozilla.org/firefox/extensions/privacy-security/) ([RSS](https://addons.mozilla.org/en-US/firefox/extensions/privacy-security/format:rss?sort=featured))
 
