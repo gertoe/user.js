@@ -1171,3 +1171,10 @@ user_pref("mousewheel.with_shift.action",	"0");
 
 // disable content loading when pasting clipboard
 user_pref("middlemouse.contentLoadURL",	false);
+
+// always warn on quit
+user_pref("browser.showQuitWarning",	true);
+user_pref("browser.warnOnQuit",	true);
+
+// search with... in background tab
+user_pref("browser.search.context.loadInBackground",  true);
