@@ -759,7 +759,7 @@ user_pref("browser.cache.offline.enable",			false);
 // NOTICE: Clearing open windows on Firefox exit causes 2 windows to open when Firefox starts https://bugzilla.mozilla.org/show_bug.cgi?id=1334945
 user_pref("privacy.sanitize.sanitizeOnShutdown",		true);
 user_pref("privacy.clearOnShutdown.cache",			true);
-user_pref("privacy.clearOnShutdown.cookies",			true);
+user_pref("privacy.clearOnShutdown.cookies",			false);
 //user_pref("privacy.clearOnShutdown.downloads",			true);
 user_pref("privacy.clearOnShutdown.downloads",			false);
 user_pref("privacy.clearOnShutdown.formdata",			true);
@@ -1178,3 +1178,7 @@ user_pref("browser.warnOnQuit",	true);
 
 // search with... in background tab
 user_pref("browser.search.context.loadInBackground",  true);
+
+// fix blurry fonts in firefox
+user_pref("layers.acceleration.force-enabled", false);
+
