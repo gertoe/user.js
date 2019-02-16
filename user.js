@@ -112,6 +112,7 @@ user_pref("beacon.enabled",					false);
 // PREF: Disable clipboard event detection (onCut/onCopy/onPaste) via Javascript
 // NOTICE: Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
 // https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/dom.event.clipboardevents.enabled
+//user_pref("dom.event.clipboardevents.enabled",			false);
 user_pref("dom.event.clipboardevents.enabled",			true);
 
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
@@ -191,7 +192,7 @@ user_pref("webgl.disable-fail-if-major-performance-caveat",	true);
 // https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info",			false);
 // somewhat related...
-//user_pref("pdfjs.enableWebGL",					false);
+user_pref("pdfjs.enableWebGL",					false);
 
 // PREF: Spoof dual-core CPU
 // https://trac.torproject.org/projects/tor/ticket/21675
@@ -692,7 +693,7 @@ user_pref("security.sri.enable",				true);
 // https://dnt-dashboard.mozilla.org
 // https://github.com/pyllyukko/user.js/issues/11
 // NOTICE: Do No Track must be enabled manually
-//user_pref("privacy.donottrackheader.enabled",		true);
+user_pref("privacy.donottrackheader.enabled",		true);
 
 // PREF: Send a referer header with the target URI as the source
 // https://bugzilla.mozilla.org/show_bug.cgi?id=822869
@@ -713,6 +714,9 @@ user_pref("network.http.referer.spoofSource",			false);
 // NOTICE: Blocking 3rd-party cookies breaks a number of payment gateways
 // CIS 2.5.1
 user_pref("network.cookie.cookieBehavior",			1);
+//
+// no cookies are allowed
+//user_pref("network.cookie.cookieBehavior",			2);
 
 // PREF: Enable first-party isolation
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1299996
@@ -759,14 +763,13 @@ user_pref("browser.cache.offline.enable",			false);
 // NOTICE: Clearing open windows on Firefox exit causes 2 windows to open when Firefox starts https://bugzilla.mozilla.org/show_bug.cgi?id=1334945
 user_pref("privacy.sanitize.sanitizeOnShutdown",		true);
 user_pref("privacy.clearOnShutdown.cache",			true);
-user_pref("privacy.clearOnShutdown.cookies",			true);
+user_pref("privacy.clearOnShutdown.cookies",			false);
 //user_pref("privacy.clearOnShutdown.downloads",			true);
 user_pref("privacy.clearOnShutdown.downloads",			false);
 user_pref("privacy.clearOnShutdown.formdata",			true);
 user_pref("privacy.clearOnShutdown.history",			false);
 user_pref("privacy.clearOnShutdown.offlineApps",		true);
-//user_pref("privacy.clearOnShutdown.sessions",			true);
-user_pref("privacy.clearOnShutdown.sessions",			false);
+user_pref("privacy.clearOnShutdown.sessions",			true);
 //user_pref("privacy.clearOnShutdown.openWindows",		true);
 user_pref("privacy.clearOnShutdown.openWindows",		false);
 
@@ -777,7 +780,7 @@ user_pref("privacy.sanitize.timeSpan",				365);
 // PREF: Clear everything but "Site Preferences" in "Clear Recent History"
 user_pref("privacy.cpd.offlineApps",				true);
 user_pref("privacy.cpd.cache",					true);
-user_pref("privacy.cpd.cookies",				true);
+user_pref("privacy.cpd.cookies",				false);
 user_pref("privacy.cpd.downloads",				true);
 user_pref("privacy.cpd.formdata",				true);
 user_pref("privacy.cpd.history",				true);
@@ -814,6 +817,7 @@ user_pref("browser.formfill.enable",				false);
 // PREF: Cookies expires at the end of the session (when the browser closes)
 // http://kb.mozillazine.org/Network.cookie.lifetimePolicy#2
 user_pref("network.cookie.lifetimePolicy",			2);
+//user_pref("network.cookie.lifetimePolicy",			0);
 
 // PREF: Require manual intervention to autofill known username/passwords sign-in forms
 // http://kb.mozillazine.org/Signon.autofillForms
@@ -856,7 +860,8 @@ user_pref("browser.helperApps.deleteTempFileOnExit",		true);
 // PREF: Do not create screenshots of visited pages (relates to the "new tab page" feature)
 // https://support.mozilla.org/en-US/questions/973320
 // https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/browser.pagethumbnails.capturing_disabled
-user_pref("browser.pagethumbnails.capturing_disabled",		true);
+//user_pref("browser.pagethumbnails.capturing_disabled",		true);
+user_pref("browser.pagethumbnails.capturing_disabled",		false);
 
 // PREF: Don't fetch and permanently store favicons for Windows .URL shortcuts created by drag and drop
 // NOTICE: .URL shortcut files will be created with a generic icon
@@ -923,7 +928,6 @@ user_pref("browser.newtabpage.directory.source",		"data:text/plain,{}");
 // CIS Version 1.2.0 October 21st, 2011 2.1.2
 // https://hg.mozilla.org/mozilla-central/rev/304560
 user_pref("plugins.update.notifyUser",				true);
-
 
 // PREF: Force Punycode for Internationalized Domain Names
 // http://kb.mozillazine.org/Network.IDN_show_punycode
