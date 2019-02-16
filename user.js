@@ -1182,3 +1182,7 @@ user_pref("browser.warnOnQuit",	true);
 
 // search with... in background tab
 user_pref("browser.search.context.loadInBackground",  true);
+
+// fix blurry fonts in firefox
+user_pref("layers.acceleration.force-enabled", false);
+
