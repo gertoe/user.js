@@ -425,6 +425,7 @@ user_pref("plugin.state.libgnome-shell-browser-plugin",		0);
 // PREF: Disable the bundled OpenH264 video codec (disabled)
 // http://forums.mozillazine.org/viewtopic.php?p=13845077&sid=28af2622e8bd8497b9113851676846b1#p13845077
 //user_pref("media.gmp-provider.enabled",		false);
+user_pref("media.gmp-provider.enabled",		true);
 
 // PREF: Enable plugins click-to-play
 // https://wiki.mozilla.org/Firefox/Click_To_Play
@@ -548,7 +549,10 @@ user_pref("privacy.userContext.enabled",			true);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
 // https://wiki.mozilla.org/Security/Fingerprinting
 // NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
-user_pref("privacy.resistFingerprinting",			true);
+//user_pref("privacy.resistFingerprinting",			true);
+//
+/* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de) */
+user_pref("privacy.resistFingerprinting",			false);
 
 // PREF: Disable the built-in PDF viewer
 // https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
@@ -670,8 +674,9 @@ user_pref("browser.casting.enabled",				false);
 // PREF: Disable automatic downloading of OpenH264 codec
 // https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_media-capabilities
 // https://andreasgal.com/2014/10/14/openh264-now-in-firefox/
-user_pref("media.gmp-gmpopenh264.enabled",			false);
-user_pref("media.gmp-manager.url",				"");
+//user_pref("media.gmp-gmpopenh264.enabled",			false);
+user_pref("media.gmp-gmpopenh264.enabled",			true);
+//user_pref("media.gmp-manager.url",				"");
 
 // PREF: Disable speculative pre-connections
 // https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_speculative-pre-connections
