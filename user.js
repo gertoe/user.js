@@ -690,7 +690,7 @@ user_pref("browser.aboutHomeSnippets.updateUrl",		"");
 
 // PREF: Never check updates for search engines
 // https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_auto-update-checking
-user_pref("browser.search.update",				false);
+//user_pref("browser.search.update",				false);
 
 // PREF: Disable automatic captive portal detection (Firefox >= 52.0)
 // https://support.mozilla.org/en-US/questions/1157121
@@ -1226,7 +1226,25 @@ user_pref("browser.warnOnQuit",	true);
 
 // search with... in background tab
 user_pref("browser.search.context.loadInBackground",  true);
+// open tabs in background as well...
+user_pref("browser.tabs.loadDivertedInBackground",  true);
 
 // fix blurry fonts in firefox
 user_pref("layers.acceleration.force-enabled", false);
 
+// Disable back via backspace button
+user_pref("browser.backspace_action", "2")
+
+// Unset locale (UI language and pre-set localisation)
+user_pref("general.useragent.locale", "")
+
+// Restore also hidden tabs (Sessionrestore)
+user_pref("browser.sessionstore.restore_hidden_tabs",	true);
+
+// Do not refresh/reload pinned tabs until selected
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",	true);
+
+// force disable searching when starting to type
+user_pref("accessibility.typeaheadfind", false);
+
+user-pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
