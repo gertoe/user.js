@@ -118,6 +118,7 @@ user_pref("dom.event.clipboardevents.enabled",			true);
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
 // NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
 // https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3
+//user_pref("dom.allow_cut_copy", true);
 user_pref("dom.allow_cut_copy", true);
 
 // PREF: Disable speech recognition
@@ -192,7 +193,7 @@ user_pref("webgl.disable-fail-if-major-performance-caveat",	true);
 // https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_debug_renderer_info
 user_pref("webgl.enable-debug-renderer-info",			false);
 // somewhat related...
-user_pref("pdfjs.enableWebGL",					false);
+//user_pref("pdfjs.enableWebGL",					false);
 
 // PREF: Spoof dual-core CPU
 // https://trac.torproject.org/projects/tor/ticket/21675
@@ -276,7 +277,6 @@ user_pref("network.manage-offline-status",			false);
 // https://developer.mozilla.org/en-US/docs/Site_Compatibility_for_Firefox_23#Non-SSL_contents_on_SSL_pages_are_blocked_by_default
 // https://blog.mozilla.org/tanvi/2013/04/10/mixed-content-blocking-enabled-in-firefox-23/
 user_pref("security.mixed_content.block_active_content",	true);
-//user_pref("security.mixed_content.block_active_content",	false);
 
 // PREF: Enforce Mixed Passive Content blocking (a.k.a. Mixed Display Content)
 // NOTICE: Enabling Mixed Display Content blocking can prevent images/styles... from loading properly when connection to the website is only partially secured
@@ -549,6 +549,7 @@ user_pref("privacy.userContext.enabled",			true);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
 // https://wiki.mozilla.org/Security/Fingerprinting
 // NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
+// NOTICE: RFP changes your time zone
 //user_pref("privacy.resistFingerprinting",			true);
 //
 /* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de) */
@@ -822,6 +823,7 @@ user_pref("privacy.sanitize.timeSpan",				365);
 // PREF: Clear everything but "Site Preferences" in "Clear Recent History"
 user_pref("privacy.cpd.offlineApps",				true);
 user_pref("privacy.cpd.cache",					true);
+//user_pref("privacy.cpd.cookies",				true);
 user_pref("privacy.cpd.cookies",				false);
 user_pref("privacy.cpd.downloads",				true);
 user_pref("privacy.cpd.formdata",				true);
@@ -948,6 +950,11 @@ user_pref("browser.newtabpage.enabled",				true);
 user_pref("browser.newtab.url",					"about:newtab");
 //user_pref("browser.newtabpage.enabled",				false);
 //user_pref("browser.newtab.url",					"about:blank");
+
+// PREF: Disable Snippets
+// https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service
+// https://support.mozilla.org/en-US/kb/snippets-firefox-faq
+user_pref("browser.newtabpage.activity-stream.feeds.snippets",	false);
 
 // PREF: Disable Activity Stream
 // https://wiki.mozilla.org/Firefox/Activity_Stream
