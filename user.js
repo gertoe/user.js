@@ -280,8 +280,8 @@ user_pref("security.mixed_content.block_active_content",	true);
 
 // PREF: Enforce Mixed Passive Content blocking (a.k.a. Mixed Display Content)
 // NOTICE: Enabling Mixed Display Content blocking can prevent images/styles... from loading properly when connection to the website is only partially secured
-//user_pref("security.mixed_content.block_display_content",	true);
-user_pref("security.mixed_content.block_display_content",	false);
+user_pref("security.mixed_content.block_display_content",	true);
+//user_pref("security.mixed_content.block_display_content",	false);
 
 // PREF: Disable JAR from opening Unsafe File Types
 // http://kb.mozillazine.org/Network.jar.open-unsafe-types
@@ -337,8 +337,8 @@ user_pref("browser.startup.homepage_override.buildID",		"20100101");
 // PREF: Prevent font fingerprinting
 // https://browserleaks.com/fonts
 // https://github.com/pyllyukko/user.js/issues/120
-//user_pref("browser.display.use_document_fonts",			0);
-user_pref("browser.display.use_document_fonts",			1);
+user_pref("browser.display.use_document_fonts",			0);
+//user_pref("browser.display.use_document_fonts",			1);
 
 // PREF: Enable only whitelisted URL protocol handlers
 // http://kb.mozillazine.org/Network.protocol-handler.external-default
@@ -468,7 +468,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr",	false);
 
 // PREF: Trusted Recursive Resolver (DNS-over-HTTPS) (disabled)
 // https://wiki.mozilla.org/Trusted_Recursive_Resolver
-//user_pref("network.trr.mode",					0);
+user_pref("network.trr.mode",					0);
 
 // PREF: Disable WebIDE
 // https://trac.torproject.org/projects/tor/ticket/16222
@@ -550,10 +550,11 @@ user_pref("privacy.userContext.enabled",			true);
 // https://wiki.mozilla.org/Security/Fingerprinting
 // NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
 // NOTICE: RFP changes your time zone
-//user_pref("privacy.resistFingerprinting",			true);
+user_pref("privacy.resistFingerprinting",			true);
 //
 /* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de) */
-user_pref("privacy.resistFingerprinting",			false);
+/* 2020-03-13: works with resistFingerprinting enabled */
+//user_pref("privacy.resistFingerprinting",			false);
 
 // PREF: Disable the built-in PDF viewer
 // https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
@@ -579,11 +580,11 @@ user_pref("browser.selfsupport.url",				"");
 // https://wiki.mozilla.org/Loop
 // https://support.mozilla.org/t5/Chat-and-share/Support-for-Hello-discontinued-in-Firefox-49/ta-p/37946
 // NOTICE-DISABLED: Firefox Hello requires setting `media.peerconnection.enabled` and `media.getusermedia.screensharing.enabled` to true, `security.OCSP.require` to false to work.
-//user_pref("loop.enabled",		false);
+user_pref("loop.enabled",		false);
 
 // PREF: Disable Firefox Hello metrics collection
 // https://groups.google.com/d/topic/mozilla.dev.platform/nyVkCx-_sFw/discussion
-user_pref("loop.logDomains",					false);
+// user_pref("loop.logDomains",					false);
 
 // PREF: Enable Auto Update (disabled)
 // NOTICE: Fully automatic updates are disabled and left to package management systems on Linux. Windows users may want to change this setting.
@@ -601,7 +602,7 @@ user_pref("app.update.enabled",                 true);
 // https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work
 // http://forums.mozillazine.org/viewtopic.php?f=39&t=2711237&p=12896849#p12896849
 // CIS 2.3.4
-user_pref("browser.safebrowsing.enabled",			true); // Firefox < 50
+//user_pref("browser.safebrowsing.enabled",			true); // Firefox < 50
 user_pref("browser.safebrowsing.phishing.enabled",		true); // firefox >= 50
 
 // PREF: Enable blocking reported attack sites
@@ -637,7 +638,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.section.topstories",	false);
 // https://github.com/pyllyukko/user.js/issues/387
 // http://kb.mozillazine.org/Network.http.keep-alive.timeout
 // https://httpd.apache.org/docs/current/mod/core.html#keepalivetimeout
-//user_pref("network.http.keep-alive.timeout",			15);
+user_pref("network.http.keep-alive.timeout",			15);
 
 // PREF: Disable prefetching of <link rel="next"> URLs
 // http://kb.mozillazine.org/Network.prefetch-next
@@ -1068,7 +1069,11 @@ user_pref("security.OCSP.require",				false);
 // https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-WP.pdf
 // https://bugzilla.mozilla.org/show_bug.cgi?id=917049
 // https://bugzilla.mozilla.org/show_bug.cgi?id=967977
-user_pref("security.ssl.disable_session_identifiers",		true);
+// user_pref("security.ssl.disable_session_identifiers",		true);
+// user_pref("security.ssl.enable_session_tickets",		false);
+/* Keep them enabled until HTTP/2 is supported on the most pages */
+user_pref("security.ssl.disable_session_identifiers",		false);
+user_pref("security.ssl.enable_session_tickets",		true);
 
 // PREF: Only allow TLS 1.[0-3]
 // http://kb.mozillazine.org/Security.tls.version.*
@@ -1076,7 +1081,10 @@ user_pref("security.ssl.disable_session_identifiers",		true);
 // 2 = TLS 1.1 is the minimum required / maximum supported encryption protocol.
 // 3 = TLS 1.2 is the minimum required / maximum supported encryption protocol.
 // 4 = TLS 1.3 is the minimum required / maximum supported encryption protocol.
-user_pref("security.tls.version.min",				1);
+//user_pref("security.tls.version.min",				1);
+user_pref("security.tls.version.min",				3);
+// unsupported in Waterfox (classic)?
+//user_pref("security.tls.version.max",				4);
 user_pref("security.tls.version.max",				4);
 
 // PREF: Disable insecure TLS version fallback
@@ -1184,13 +1192,15 @@ user_pref("security.ssl3.ecdh_ecdsa_aes_256_sha",		false);
 user_pref("security.ssl3.rsa_camellia_256_sha",			false);
 
 // PREF: Enable ciphers with ECDHE and key size > 128bits
-user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		true); // 0xc014
-user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",		true); // 0xc00a
+//user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		true); // 0xc014
 
 // PREF: Enable GCM ciphers (TLSv1.2 only)
 // https://en.wikipedia.org/wiki/Galois/Counter_Mode
 user_pref("security.ssl3.ecdhe_ecdsa_aes_128_gcm_sha256",	true); // 0xc02b
 user_pref("security.ssl3.ecdhe_rsa_aes_128_gcm_sha256",		true); // 0xc02f
+user_pref("security.ssl3.ecdhe_rsa_aes_256_gcm_sha",		true);
+user_pref("security.ssl3.ecdhe_rsa_aes_256_gcm_sha384",		true);
+user_pref("security.ssl3.ecdhe_ecdsa_aes_256_gcm_sha384",		true);
 
 // PREF: Enable ChaCha20 and Poly1305 (Firefox >= 47)
 // https://www.mozilla.org/en-US/firefox/47.0/releasenotes/
@@ -1213,8 +1223,14 @@ user_pref("security.ssl3.dhe_dss_camellia_128_sha",		false);
 user_pref("security.ssl3.dhe_dss_camellia_256_sha",		false);
 
 // PREF: Fallbacks due compatibility reasons
-user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
-user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
+//user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
+//user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
+
+
+// PREF: Disable vulnerable/weak ciphers
+user_pref("security.ssl3.rsa_aes_128_sha",	false);
+user_pref("security.ssl3.rsa_aes_256_sha",	false);
+user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",	false); // 0xc00a
 
 
 // Various custom settings //
