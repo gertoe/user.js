@@ -1256,10 +1256,10 @@ user_pref("browser.tabs.loadDivertedInBackground",  true);
 user_pref("layers.acceleration.force-enabled", false);
 
 // Disable back via backspace button
-user_pref("browser.backspace_action", "2")
+user_pref("browser.backspace_action", "2");
 
 // Unset locale (UI language and pre-set localisation)
-user_pref("general.useragent.locale", "")
+user_pref("general.useragent.locale", "");
 
 // Restore also hidden tabs (Sessionrestore)
 user_pref("browser.sessionstore.restore_hidden_tabs",	true);
