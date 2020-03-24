@@ -1253,7 +1253,7 @@ user_pref("browser.search.context.loadInBackground",  true);
 user_pref("browser.tabs.loadDivertedInBackground",  true);
 
 // fix blurry fonts in firefox
-user_pref("layers.acceleration.force-enabled", false);
+//user_pref("layers.acceleration.force-enabled", false);
 
 // Disable back via backspace button
 user_pref("browser.backspace_action", "2");
