@@ -1271,3 +1271,7 @@ user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",	true);
 user_pref("accessibility.typeaheadfind", false);
 
 user-pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
+
+// Disable homepage override in Waterfox Current
+user-pref("startup.homepage_override_url", "");
+
