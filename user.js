@@ -280,8 +280,8 @@ user_pref("security.mixed_content.block_active_content",	true);
 
 // PREF: Enforce Mixed Passive Content blocking (a.k.a. Mixed Display Content)
 // NOTICE: Enabling Mixed Display Content blocking can prevent images/styles... from loading properly when connection to the website is only partially secured
-user_pref("security.mixed_content.block_display_content",	true);
-//user_pref("security.mixed_content.block_display_content",	false);
+//user_pref("security.mixed_content.block_display_content",	true);
+user_pref("security.mixed_content.block_display_content",	false);
 
 // PREF: Disable JAR from opening Unsafe File Types
 // http://kb.mozillazine.org/Network.jar.open-unsafe-types
@@ -337,8 +337,8 @@ user_pref("browser.startup.homepage_override.buildID",		"20100101");
 // PREF: Prevent font fingerprinting
 // https://browserleaks.com/fonts
 // https://github.com/pyllyukko/user.js/issues/120
-user_pref("browser.display.use_document_fonts",			0);
-//user_pref("browser.display.use_document_fonts",			1);
+//user_pref("browser.display.use_document_fonts",			0);
+user_pref("browser.display.use_document_fonts",			1);
 
 // PREF: Enable only whitelisted URL protocol handlers
 // http://kb.mozillazine.org/Network.protocol-handler.external-default
