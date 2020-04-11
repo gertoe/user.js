@@ -280,8 +280,8 @@ user_pref("security.mixed_content.block_active_content",	true);
 
 // PREF: Enforce Mixed Passive Content blocking (a.k.a. Mixed Display Content)
 // NOTICE: Enabling Mixed Display Content blocking can prevent images/styles... from loading properly when connection to the website is only partially secured
-user_pref("security.mixed_content.block_display_content",	true);
-//user_pref("security.mixed_content.block_display_content",	false);
+//user_pref("security.mixed_content.block_display_content",	true);
+user_pref("security.mixed_content.block_display_content",	false);
 
 // PREF: Disable JAR from opening Unsafe File Types
 // http://kb.mozillazine.org/Network.jar.open-unsafe-types
@@ -1253,7 +1253,7 @@ user_pref("browser.search.context.loadInBackground",  true);
 user_pref("browser.tabs.loadDivertedInBackground",  true);
 
 // fix blurry fonts in firefox
-user_pref("layers.acceleration.force-enabled", false);
+//user_pref("layers.acceleration.force-enabled", false);
 
 // Disable back via backspace button
 user_pref("browser.backspace_action", "2");
