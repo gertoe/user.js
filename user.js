@@ -550,11 +550,12 @@ user_pref("privacy.userContext.enabled",			true);
 // https://wiki.mozilla.org/Security/Fingerprinting
 // NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
 // NOTICE: RFP changes your time zone
-user_pref("privacy.resistFingerprinting",			true);
+// user_pref("privacy.resistFingerprinting",			true);
 //
-/* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de) */
-/* 2020-03-13: works with resistFingerprinting enabled */
-//user_pref("privacy.resistFingerprinting",			false);
+/* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de, youtube.com) */
+/* 2020-03-13: heise.de works with resistFingerprinting enabled */
+/* 2020-04-10: youtube.com broken with resistFingerprinting enabled */
+user_pref("privacy.resistFingerprinting",			false);
 
 // PREF: Disable the built-in PDF viewer
 // https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
@@ -1252,8 +1253,8 @@ user_pref("browser.search.context.loadInBackground",  true);
 // open tabs in background as well...
 user_pref("browser.tabs.loadDivertedInBackground",  true);
 
-// fix blurry fonts in firefox
-//user_pref("layers.acceleration.force-enabled", false);
+// fix blurry fonts in firefox if Nvidia FXAA is enabled
+// user_pref("layers.acceleration.force-enabled", false);
 
 // Disable back via backspace button
 user_pref("browser.backspace_action", "2");
