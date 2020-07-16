@@ -1249,6 +1249,9 @@ user_pref("security.ssl3.rsa_aes_128_sha",	false);
 user_pref("security.ssl3.rsa_aes_256_sha",	false);
 user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",	false); // 0xc00a
 
+// Turn off 0RTT data for TLS 1.3
+// https://github.com/tlswg/tls13-spec/issues/1001
+pref("security.tls.enable_0rtt_data", false);
 
 // Various custom settings //
 // PREF: Disable auto focus of input fields
