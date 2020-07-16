@@ -348,6 +348,7 @@ Improve visibility of security-related elements, mitigate shoulder-surfing
 * Warn the user when server doesn't support RFC 5746 ("safe" renegotiation) [ [1](https://wiki.mozilla.org/Security:Renegotiation#security.ssl.treat_unsafe_negotiation_as_broken) [2](https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2009-3555) ]
 * Disable automatic reporting of TLS connection errors [ [1](https://support.mozilla.org/en-US/kb/certificate-pinning-reports) ]
 * Pre-populate the current URL but do not pre-fetch the certificate in the "Add Security Exception" dialog [ [1](http://kb.mozillazine.org/Browser.ssl_override_behavior) [2](https://github.com/pyllyukko/user.js/issues/210) ]
+* Encrypted SNI (when TRR is enabled) [ [1](https://www.cloudflare.com/ssl/encrypted-sni/) [2](https://wiki.mozilla.org/Trusted_Recursive_Resolver#ESNI) [3](https://en.wikipedia.org/wiki/Server_Name_Indication#Security_implications_(ESNI)) ]
 
 ### Cipher suites
 
@@ -359,12 +360,10 @@ This section tweaks the cipher suites used by Firefox. The idea is to support on
 * Disable 3DES (effective key size is < 128) [ [1](https://en.wikipedia.org/wiki/3des#Security) [2](http://en.citizendium.org/wiki/Meet-in-the-middle_attack) [3](http://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html) ]
 * Disable ciphers with ECDH (non-ephemeral)
 * Disable 256 bits ciphers without PFS
-* Enable ciphers with ECDHE and key size > 128bits
 * Enable GCM ciphers (TLSv1.2 only) [ [1](https://en.wikipedia.org/wiki/Galois/Counter_Mode) ]
 * Enable ChaCha20 and Poly1305 (Firefox >= 47) [ [1](https://www.mozilla.org/en-US/firefox/47.0/releasenotes/) [2](https://tools.ietf.org/html/rfc7905) [3](https://bugzilla.mozilla.org/show_bug.cgi?id=917571) [4](https://bugzilla.mozilla.org/show_bug.cgi?id=1247860) [5](https://cr.yp.to/chacha.html) ]
 * Disable ciphers susceptible to the logjam attack [ [1](https://weakdh.org/) ]
 * Disable ciphers with DSA (max 1024 bits)
-* Fallbacks due compatibility reasons
 <!-- END SECTION -->
 
 -------------------------------------------------------------------------

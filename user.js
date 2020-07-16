@@ -118,7 +118,7 @@ user_pref("dom.event.clipboardevents.enabled",			true);
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
 // NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
 // https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3
-//user_pref("dom.allow_cut_copy", true);
+//user_pref("dom.allow_cut_copy", false);
 user_pref("dom.allow_cut_copy", true);
 
 // PREF: Disable speech recognition
@@ -585,7 +585,7 @@ user_pref("loop.enabled",		false);
 
 // PREF: Disable Firefox Hello metrics collection
 // https://groups.google.com/d/topic/mozilla.dev.platform/nyVkCx-_sFw/discussion
-// user_pref("loop.logDomains",					false);
+user_pref("loop.logDomains",					false);
 
 // PREF: Enable Auto Update (disabled)
 // NOTICE: Fully automatic updates are disabled and left to package management systems on Linux. Windows users may want to change this setting.
@@ -603,7 +603,7 @@ user_pref("app.update.enabled",                 true);
 // https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work
 // http://forums.mozillazine.org/viewtopic.php?f=39&t=2711237&p=12896849#p12896849
 // CIS 2.3.4
-//user_pref("browser.safebrowsing.enabled",			true); // Firefox < 50
+user_pref("browser.safebrowsing.enabled",			true); // Firefox < 50
 user_pref("browser.safebrowsing.phishing.enabled",		true); // firefox >= 50
 
 // PREF: Enable blocking reported attack sites
@@ -1131,6 +1131,12 @@ user_pref("security.ssl.errorReporting.automatic",		false);
 // https://github.com/pyllyukko/user.js/issues/210
 user_pref("browser.ssl_override_behavior",			1);
 
+// PREF: Encrypted SNI (when TRR is enabled)
+// https://www.cloudflare.com/ssl/encrypted-sni/
+// https://wiki.mozilla.org/Trusted_Recursive_Resolver#ESNI
+// https://en.wikipedia.org/wiki/Server_Name_Indication#Security_implications_(ESNI)
+user_pref("network.security.esni.enabled",			true);
+
 /******************************************************************************
  * SECTION: Cipher suites                                                     *
  ******************************************************************************/
@@ -1196,7 +1202,8 @@ user_pref("security.ssl3.ecdh_ecdsa_aes_256_sha",		false);
 user_pref("security.ssl3.rsa_camellia_256_sha",			false);
 
 // PREF: Enable ciphers with ECDHE and key size > 128bits
-//user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		true); // 0xc014
+user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		true); // 0xc014
+user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",		true); // 0xc00a
 
 // PREF: Enable GCM ciphers (TLSv1.2 only)
 // https://en.wikipedia.org/wiki/Galois/Counter_Mode
@@ -1226,9 +1233,15 @@ user_pref("security.ssl3.dhe_dss_aes_256_sha",			false);
 user_pref("security.ssl3.dhe_dss_camellia_128_sha",		false);
 user_pref("security.ssl3.dhe_dss_camellia_256_sha",		false);
 
+// PREF: Ciphers with CBC & SHA-1 (disabled)
+//user_pref("security.ssl3.rsa_aes_256_sha",			false); // 0x35
+//user_pref("security.ssl3.rsa_aes_128_sha",			false); // 0x2f
+//user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		false); // 0xc014
+//user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",		false); // 0xc00a
+
 // PREF: Fallbacks due compatibility reasons
-//user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
-//user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
+user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
+user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
 
 
 // PREF: Disable vulnerable/weak ciphers

@@ -23,7 +23,7 @@ systemwide_user.js: user.js
 	sed 's/^user_pref/pref/' $< >| $@
 
 debian_locked.js: user.js
-	sed 's/^user_pref(\("[^"]\+"\),\s\+\([^)]\+\));$$/pref(\1, \2, locked);/' $< >| $@
+	sed 's/^user_pref(\("[^"]\+"\),\s\+\([^)]\+\));\(\s*\/\/.*\)\?$$/pref(\1, \2, locked);/' $< >| $@
 
 # https://github.com/mozilla/policy-templates/blob/master/README.md
 policies.json:
@@ -61,7 +61,7 @@ FIREFOX_SOURCE_PREFS= \
 sourceprefs.js:
 	@for SOURCEFILE in $(FIREFOX_SOURCE_PREFS); do wget -nv "$$SOURCEFILE" -O - ; done | egrep "(^pref|^user_pref)" | sort --unique >| $@
 
-TBBBRANCH=tor-browser-60.3.0esr-8.5-1
+TBBBRANCH=tor-browser-68.8.0esr-9.5-1
 000-tor-browser.js:
 	wget -nv "https://gitweb.torproject.org/tor-browser.git/plain/browser/app/profile/firefox.js?h=$(TBBBRANCH)" -O $@
 
