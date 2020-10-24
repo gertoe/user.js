@@ -198,7 +198,8 @@ user_pref("webgl.enable-debug-renderer-info",			false);
 // PREF: Spoof dual-core CPU
 // https://trac.torproject.org/projects/tor/ticket/21675
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1360039
-user_pref("dom.maxHardwareConcurrency",				2);
+//user_pref("dom.maxHardwareConcurrency",				2);
+user_pref("dom.maxHardwareConcurrency",				4);
 
 // PREF: Disable WebAssembly
 // https://webassembly.org/
@@ -1290,8 +1291,12 @@ user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",	true);
 // force disable searching when starting to type
 user_pref("accessibility.typeaheadfind", false);
 
-user-pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
+user_pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
 
 // Disable homepage override in Waterfox Current
-user-pref("startup.homepage_override_url", "");
+user_pref("startup.homepage_override_url", "");
+
+// Disable webm/opus for media sources to ensure distortion-free playback
+user_pref("media.mediasource.webm.enabled", "false");
+user_pref("media.mediasource.webm.audio.enabled", "false");
 
