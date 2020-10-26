@@ -1297,6 +1297,6 @@ user_pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
 user_pref("startup.homepage_override_url", "");
 
 // Disable webm/opus for media sources to ensure distortion-free playback
-user_pref("media.mediasource.webm.enabled", "false");
-user_pref("media.mediasource.webm.audio.enabled", "false");
+user_pref("media.mediasource.webm.enabled", false);
+user_pref("media.mediasource.webm.audio.enabled", false);
 
