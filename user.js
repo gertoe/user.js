@@ -205,7 +205,7 @@ user_pref("dom.maxHardwareConcurrency",				4);
 // https://webassembly.org/
 // https://en.wikipedia.org/wiki/WebAssembly
 // https://trac.torproject.org/projects/tor/ticket/21549
-user_pref("javascript.options.wasm",				false);
+//user_pref("javascript.options.wasm",				false);
 
 /******************************************************************************
  * SECTION: Misc                                                              *
@@ -1297,6 +1297,7 @@ user_pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
 user_pref("startup.homepage_override_url", "");
 
 // Disable webm/opus for media sources to ensure distortion-free playback
+user_pref("media.webm.enabled", false);
 user_pref("media.mediasource.webm.enabled", false);
 user_pref("media.mediasource.webm.audio.enabled", false);
 
