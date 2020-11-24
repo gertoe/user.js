@@ -1252,7 +1252,7 @@ user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",	false); // 0xc00a
 
 // Turn off 0RTT data for TLS 1.3
 // https://github.com/tlswg/tls13-spec/issues/1001
-pref("security.tls.enable_0rtt_data", false);
+user_pref("security.tls.enable_0rtt_data", false);
 
 // Various custom settings //
 // PREF: Disable auto focus of input fields
@@ -1300,4 +1300,9 @@ user_pref("startup.homepage_override_url", "");
 user_pref("media.webm.enabled", false);
 user_pref("media.mediasource.webm.enabled", false);
 user_pref("media.mediasource.webm.audio.enabled", false);
+
+// Disable monstrous mega-bar
+user_pref("ui.prefersReducedMotion", "1");
+user_pref("browser.urlbar.maxRichResults", "0");
+user_pref("browser.urlbar.disableExtendForTests", true);
 
