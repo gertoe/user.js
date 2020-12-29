@@ -199,6 +199,7 @@ user_pref("webgl.enable-debug-renderer-info",			false);
 // https://trac.torproject.org/projects/tor/ticket/21675
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1360039
 //user_pref("dom.maxHardwareConcurrency",				2);
+// PREF: Spoof quad-core CPU
 user_pref("dom.maxHardwareConcurrency",				4);
 
 // PREF: Disable WebAssembly
@@ -335,7 +336,8 @@ user_pref("media.video_stats.enabled",				false);
 user_pref("general.buildID.override",				"20100101");
 user_pref("browser.startup.homepage_override.buildID",		"20100101");
 
-// PREF: Prevent font fingerprinting
+// PREF: Don't use document specified fonts to prevent installed font enumeration (fingerprinting)
+// https://github.com/pyllyukko/user.js/issues/395
 // https://browserleaks.com/fonts
 // https://github.com/pyllyukko/user.js/issues/120
 //user_pref("browser.display.use_document_fonts",			0);
@@ -415,10 +417,6 @@ user_pref("dom.ipc.plugins.reportCrashURL",			false);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1237198
 // https://github.com/mozilla-services/shavar-plugin-blocklist
 user_pref("browser.safebrowsing.blockedURIs.enabled", true);
-
-// PREF: Disable Shumway (Mozilla Flash renderer)
-// https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Shumway
-user_pref("shumway.disabled", true);
 
 // PREF: Disable Gnome Shell Integration NPAPI plugin
 user_pref("plugin.state.libgnome-shell-browser-plugin",		0);
@@ -553,10 +551,31 @@ user_pref("privacy.userContext.enabled",			true);
 // NOTICE: RFP changes your time zone
 // user_pref("privacy.resistFingerprinting",			true);
 //
+// NOTE: privacy.resistFingerprinting always sppofs "Windows NT" instead of the
+//       real OS on Waterfox.
+//
 /* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de, youtube.com) */
 /* 2020-03-13: heise.de works with resistFingerprinting enabled */
 /* 2020-04-10: youtube.com broken with resistFingerprinting enabled */
 user_pref("privacy.resistFingerprinting",			false);
+
+// PREF: disable mozAddonManager Web API [FF57+]
+// https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330
+// https://bugzilla.mozilla.org/buglist.cgi?bug_id=1406795
+// https://bugzilla.mozilla.org/buglist.cgi?bug_id=1415644
+// https://bugzilla.mozilla.org/buglist.cgi?bug_id=1453988
+// https://trac.torproject.org/projects/tor/ticket/26114
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
+user_pref("extensions.webextensions.restrictedDomains", "");
+
+// PREF: enable RFP letterboxing / resizing of inner window [FF67+] (disabled)
+// https://bugzilla.mozilla.org/1407366
+//user_pref("privacy.resistFingerprinting.letterboxing", true);
+//user_pref("privacy.resistFingerprinting.letterboxing.dimensions", "800x600, 1000x1000, 1600x900");
+
+// PREF: disable showing about:blank/maximized window as soon as possible during startup [FF60+]
+// https://bugzilla.mozilla.org/1448423
+user_pref("browser.startup.blankWindow", false);
 
 // PREF: Disable the built-in PDF viewer
 // https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
@@ -573,9 +592,19 @@ user_pref("datareporting.policy.dataSubmissionEnabled",		false);
 // "Allow Firefox to make personalized extension recommendations"
 user_pref("browser.discovery.enabled",				false);
 
-// PREF: Disable Heartbeat  (Mozilla user rating telemetry)
+// PREF: Disable Shield/Heartbeat/Normandy (Mozilla user rating telemetry)
 // https://wiki.mozilla.org/Advocacy/heartbeat
 // https://trac.torproject.org/projects/tor/ticket/19047
+// https://trac.torproject.org/projects/tor/ticket/18738
+// https://wiki.mozilla.org/Firefox/Shield
+// https://github.com/mozilla/normandy
+// https://support.mozilla.org/en-US/kb/shield
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1370801
+user_pref("app.normandy.enabled", false);
+user_pref("app.normandy.api_url", "");
+user_pref("extensions.shield-recipe-client.enabled",		false);
+user_pref("app.shield.optoutstudies.enabled",			false);
+// for older FF browsers
 user_pref("browser.selfsupport.url",				"");
 
 // PREF: Disable Firefox Hello (disabled) (Firefox < 49)
@@ -622,12 +651,6 @@ user_pref("browser.safebrowsing.downloads.remote.enabled",	false);
 // https://github.com/pyllyukko/user.js/issues/143
 user_pref("browser.pocket.enabled",				false);
 user_pref("extensions.pocket.enabled",				false);
-
-// PREF: Disable SHIELD
-// https://support.mozilla.org/en-US/kb/shield
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1370801
-user_pref("extensions.shield-recipe-client.enabled",		false);
-user_pref("app.shield.optoutstudies.enabled",			false);
 
 // PREF: Disable "Recommended by Pocket" in Firefox Quantum
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories",	false);
@@ -739,19 +762,20 @@ user_pref("security.sri.enable",				true);
 // NOTICE: Do No Track must be enabled manually
 user_pref("privacy.donottrackheader.enabled",		true);
 
-// PREF: Send a referer header with the target URI as the source
+// PREF: Send a referer header with the target URI as the source (disabled)
 // https://bugzilla.mozilla.org/show_bug.cgi?id=822869
 // https://github.com/pyllyukko/user.js/issues/227
-// NOTICE: Spoofing referers breaks functionality on websites relying on authentic referer headers
-// NOTICE: Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
-// NOTICE: Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
+// NOTICE-DISABLED: Spoofing referers breaks functionality on websites relying on authentic referer headers
+// NOTICE-DISABLED: Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
+// NOTICE-DISABLED: Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
 //user_pref("network.http.referer.spoofSource",			true);
-user_pref("network.http.referer.spoofSource",			false);
 
-// PREF: Don't send referer headers when following links across different domains (disabled)
+// PREF: Don't send referer headers when following links across different domains
 // https://github.com/pyllyukko/user.js/issues/227
-// user_pref("network.http.referer.XOriginPolicy",		2);
+// https://github.com/pyllyukko/user.js/issues/328
+// https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
+user_pref("network.http.referer.XOriginPolicy",		2);
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
@@ -762,7 +786,7 @@ user_pref("network.http.referer.spoofSource",			false);
 // no cookies are allowed
 //user_pref("network.cookie.cookieBehavior",			2);
 //
-// block all Third-party trackers
+// block all Third-party trackers (only)
 user_pref("network.cookie.cookieBehavior",			4);
 
 // PREF: Enable first-party isolation
@@ -857,7 +881,7 @@ user_pref("browser.cache.disk_cache_ssl",			false);
 // CIS Version 1.2.0 October 21st, 2011 2.5.5
 user_pref("browser.download.manager.retention",			1);
 
-// PREF: Disable password manager
+// PREF: Disable password manager (use an external password manager!)
 // CIS Version 1.2.0 October 21st, 2011 2.5.2
 user_pref("signon.rememberSignons",				false);
 
@@ -922,6 +946,11 @@ user_pref("browser.shell.shortcutFavicons",					false);
 // http://kb.mozillazine.org/Browser.bookmarks.max_backups
 user_pref("browser.bookmarks.max_backups", 0);
 
+// PREF: Export bookmarks to HTML automatically when closing Firefox (disabled)
+// https://support.mozilla.org/en-US/questions/1176242
+//user_pref("browser.bookmarks.autoExportHTML", 				true);
+//user_pref("browser.bookmarks.file",	'/path/to/bookmarks-export.html');
+
 /*******************************************************************************
  * SECTION: UI related                                                         *
  *******************************************************************************/
@@ -937,6 +966,7 @@ user_pref("security.insecure_password.ui.enabled",		true);
 
 // PREF: Disable "Are you sure you want to leave this page?" popups on page close
 // https://support.mozilla.org/en-US/questions/1043508
+// NOTICE: disabling "beforeunload" events may lead to losing data entered in web forms
 // Does not prevent JS leaks of the page close event.
 // https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
 //user_pref("dom.disable_beforeunload",    true);
@@ -952,10 +982,10 @@ user_pref("browser.download.useDownloadDir",			false);
 // PREF: Disable the "new tab page" feature and show a blank tab instead
 // https://wiki.mozilla.org/Privacy/Reviews/New_Tab
 // https://support.mozilla.org/en-US/kb/new-tab-page-show-hide-and-customize-top-sites#w_how-do-i-turn-the-new-tab-page-off
-user_pref("browser.newtabpage.enabled",				true);
-user_pref("browser.newtab.url",					"about:newtab");
 //user_pref("browser.newtabpage.enabled",				false);
 //user_pref("browser.newtab.url",					"about:blank");
+user_pref("browser.newtabpage.enabled",				true);
+user_pref("browser.newtab.url",					"about:newtab");
 
 // PREF: Disable Snippets
 // https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service
@@ -1065,8 +1095,8 @@ user_pref("security.ssl.enable_ocsp_must_staple",		true);
 // Disabling this will make OCSP bypassable by MitM attacks suppressing OCSP responses
 // NOTICE: `security.OCSP.require` will make the connection fail when the OCSP responder is unavailable
 // NOTICE: `security.OCSP.require` is known to break browsing on some [captive portals](https://en.wikipedia.org/wiki/Captive_portal)
-//user_pref("security.OCSP.require",				true);
-user_pref("security.OCSP.require",				false);
+user_pref("security.OCSP.require",				true);
+//user_pref("security.OCSP.require",				false);
 
 // PREF: Disable TLS Session Tickets
 // https://www.blackhat.com/us-13/briefings.html#NextGen
@@ -1254,7 +1284,8 @@ user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",	false); // 0xc00a
 // https://github.com/tlswg/tls13-spec/issues/1001
 user_pref("security.tls.enable_0rtt_data", false);
 
-// Various custom settings //
+/* ************************ // Various custom settings // ******************* */
+
 // PREF: Disable auto focus of input fields
 //user_perf("browser.autofocus",		false);
 
