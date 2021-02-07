@@ -40,6 +40,7 @@ user_pref("dom.enable_user_timing",				false);
 
 // PREF: Disable Web Audio API
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1288359
+// NOTICE: Web Audio API is required for Unity web player/games
 user_pref("dom.webaudio.enabled",				false);
 
 // PREF: Disable Location-Aware Browsing (geolocation)
@@ -114,13 +115,11 @@ user_pref("beacon.enabled",					false);
 // NOTICE: Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
 // https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/dom.event.clipboardevents.enabled
 //user_pref("dom.event.clipboardevents.enabled",			false);
-user_pref("dom.event.clipboardevents.enabled",			true);
 
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
 // NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
 // https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3
 //user_pref("dom.allow_cut_copy", false);
-user_pref("dom.allow_cut_copy", true);
 
 // PREF: Disable speech recognition
 // https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html
@@ -243,7 +242,6 @@ user_pref("browser.search.geoSpecificDefaults",			false);
 // PREF: Do not automatically send selection to clipboard on some Linux platforms
 // http://kb.mozillazine.org/Clipboard.autocopy
 //user_pref("clipboard.autocopy",					false);
-user_pref("clipboard.autocopy",					true);
 
 // PREF: Prevent leaking application locale/date format using JavaScript
 // https://bugzilla.mozilla.org/show_bug.cgi?id=867501
@@ -253,7 +251,6 @@ user_pref("javascript.use_us_english_locale",			true);
 // PREF: Do not submit invalid URIs entered in the address bar to the default search engine
 // http://kb.mozillazine.org/Keyword.enabled
 //user_pref("keyword.enabled",					false);
-user_pref("keyword.enabled",					true);
 
 // PREF: Don't trim HTTP off of URLs in the address bar.
 // https://bugzilla.mozilla.org/show_bug.cgi?id=665580
@@ -288,7 +285,7 @@ user_pref("security.mixed_content.block_display_content",	false);
 
 // PREF: Disable JAR from opening Unsafe File Types
 // http://kb.mozillazine.org/Network.jar.open-unsafe-types
-// CIS Mozilla Firefox 24 ESR v1.0.0 - 3.7
+// CIS Mozilla Firefox 24 ESR v1.0.0 - 3.7 
 user_pref("network.jar.open-unsafe-types",			false);
 
 // CIS 2.7.4 Disable Scripting of Plugins by JavaScript
@@ -302,7 +299,7 @@ user_pref("security.fileuri.strict_origin_policy",		true);
 
 // PREF: Disable Displaying Javascript in History URLs
 // http://kb.mozillazine.org/Browser.urlbar.filter.javascript
-// CIS 2.3.6
+// CIS 2.3.6 
 user_pref("browser.urlbar.filter.javascript",			true);
 
 // PREF: Disable asm.js
@@ -322,7 +319,6 @@ user_pref("gfx.font_rendering.opentype_svg.enabled",		false);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 // https://github.com/iSECPartners/publications/raw/master/reports/Tor%20Browser%20Bundle/Tor%20Browser%20Bundle%20-%20iSEC%20Deliverable%201.3.pdf#16
 //user_pref("svg.disabled", true);
-user_pref("svg.disabled", false);
 
 
 // PREF: Disable video stats to reduce fingerprinting threat
@@ -342,7 +338,6 @@ user_pref("browser.startup.homepage_override.buildID",		"20100101");
 // https://browserleaks.com/fonts
 // https://github.com/pyllyukko/user.js/issues/120
 //user_pref("browser.display.use_document_fonts",			0);
-user_pref("browser.display.use_document_fonts",			1);
 
 // PREF: Enable only whitelisted URL protocol handlers
 // http://kb.mozillazine.org/Network.protocol-handler.external-default
@@ -425,7 +420,6 @@ user_pref("plugin.state.libgnome-shell-browser-plugin",		0);
 // PREF: Disable the bundled OpenH264 video codec (disabled)
 // http://forums.mozillazine.org/viewtopic.php?p=13845077&sid=28af2622e8bd8497b9113851676846b1#p13845077
 //user_pref("media.gmp-provider.enabled",		false);
-user_pref("media.gmp-provider.enabled",		true);
 
 // PREF: Enable plugins click-to-play
 // https://wiki.mozilla.org/Firefox/Click_To_Play
@@ -824,7 +818,6 @@ user_pref("network.cookie.thirdparty.sessionOnly",		true);
 // NOTICE: Disables "Containers" functionality (see below)
 // NOTICE: "Always use private browsing mode" (browser.privatebrowsing.autostart) disables the possibility to use password manager: https://support.mozilla.org/en-US/kb/usernames-and-passwords-are-not-saved#w_private-browsing
 //user_pref("browser.privatebrowsing.autostart",			true);
-user_pref("browser.privatebrowsing.autostart",			false);
 
 // PREF: Do not download URLs for the offline cache
 // http://kb.mozillazine.org/Browser.cache.offline.enable
@@ -863,7 +856,6 @@ user_pref("privacy.cpd.sessions",				true);
 
 // PREF: Don't remember browsing history
 //user_pref("places.history.enabled",				false);
-user_pref("places.history.enabled",				true);
 
 // PREF: Disable disk cache
 // http://kb.mozillazine.org/Browser.cache.disk.enable
@@ -880,7 +872,7 @@ user_pref("browser.cache.disk_cache_ssl",			false);
 
 // PREF: Disable download history
 // CIS Version 1.2.0 October 21st, 2011 2.5.5
-user_pref("browser.download.manager.retention",			1);
+//user_pref("browser.download.manager.retention",			0);
 
 // PREF: Disable password manager (use an external password manager!)
 // CIS Version 1.2.0 October 21st, 2011 2.5.2
@@ -936,7 +928,6 @@ user_pref("browser.helperApps.deleteTempFileOnExit",		true);
 // https://support.mozilla.org/en-US/questions/973320
 // https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/browser.pagethumbnails.capturing_disabled
 //user_pref("browser.pagethumbnails.capturing_disabled",		true);
-user_pref("browser.pagethumbnails.capturing_disabled",		false);
 
 // PREF: Don't fetch and permanently store favicons for Windows .URL shortcuts created by drag and drop
 // NOTICE: .URL shortcut files will be created with a generic icon
@@ -1097,7 +1088,10 @@ user_pref("security.ssl.enable_ocsp_must_staple",		true);
 // NOTICE: `security.OCSP.require` will make the connection fail when the OCSP responder is unavailable
 // NOTICE: `security.OCSP.require` is known to break browsing on some [captive portals](https://en.wikipedia.org/wiki/Captive_portal)
 user_pref("security.OCSP.require",				true);
-//user_pref("security.OCSP.require",				false);
+
+// Increase OCSP timeout to maximum for slow connections
+user_pref("security.OCSP.timeoutMilliseconds.soft", 5000);
+user_pref("security.OCSP.timeoutMilliseconds.hard", 20000);
 
 // PREF: Disable TLS Session Tickets
 // https://www.blackhat.com/us-13/briefings.html#NextGen
@@ -1105,11 +1099,7 @@ user_pref("security.OCSP.require",				true);
 // https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-WP.pdf
 // https://bugzilla.mozilla.org/show_bug.cgi?id=917049
 // https://bugzilla.mozilla.org/show_bug.cgi?id=967977
-// user_pref("security.ssl.disable_session_identifiers",		true);
-// user_pref("security.ssl.enable_session_tickets",		false);
-/* Keep them enabled until HTTP/2 is supported on the most pages */
-user_pref("security.ssl.disable_session_identifiers",		false);
-user_pref("security.ssl.enable_session_tickets",		true);
+user_pref("security.ssl.disable_session_identifiers",		true);
 
 // PREF: Only allow TLS 1.[0-3]
 // http://kb.mozillazine.org/Security.tls.version.*
@@ -1119,8 +1109,6 @@ user_pref("security.ssl.enable_session_tickets",		true);
 // 4 = TLS 1.3 is the minimum required / maximum supported encryption protocol.
 //user_pref("security.tls.version.min",				1);
 user_pref("security.tls.version.min",				3);
-// unsupported in Waterfox (classic)?
-//user_pref("security.tls.version.max",				4);
 user_pref("security.tls.version.max",				4);
 
 // PREF: Disable insecure TLS version fallback
