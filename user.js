@@ -831,18 +831,15 @@ user_pref("browser.cache.offline.enable",			false);
 user_pref("privacy.sanitize.sanitizeOnShutdown",		true);
 user_pref("privacy.clearOnShutdown.cache",			true);
 user_pref("privacy.clearOnShutdown.cookies",			false);
-//user_pref("privacy.clearOnShutdown.downloads",			true);
-user_pref("privacy.clearOnShutdown.downloads",			false);
+user_pref("privacy.clearOnShutdown.downloads",			true);
 user_pref("privacy.clearOnShutdown.formdata",			true);
-user_pref("privacy.clearOnShutdown.history",			false);
+user_pref("privacy.clearOnShutdown.history",			false); // <- clears also all pinned tabs
 user_pref("privacy.clearOnShutdown.offlineApps",		true);
-user_pref("privacy.clearOnShutdown.sessions",			true);
-//user_pref("privacy.clearOnShutdown.openWindows",		true);
+user_pref("privacy.clearOnShutdown.sessions",			false);
 user_pref("privacy.clearOnShutdown.openWindows",		false);
 
 // PREF: Set time range to "Everything" as default in "Clear Recent History"
-//user_pref("privacy.sanitize.timeSpan",				0);
-user_pref("privacy.sanitize.timeSpan",				365);
+user_pref("privacy.sanitize.timeSpan",				0);
 
 // PREF: Clear everything but "Site Preferences" in "Clear Recent History"
 user_pref("privacy.cpd.offlineApps",				true);
@@ -1276,7 +1273,7 @@ user_pref("security.tls.enable_0rtt_data", false);
 /* ************************ // Various custom settings // ******************* */
 
 // PREF: Disable auto focus of input fields
-//user_perf("browser.autofocus",		false);
+//user_pref("browser.autofocus",		false);
 
 // disable mousewheel history backward/forward
 user_pref("mousewheel.with_shift.action",	"0");
@@ -1326,3 +1323,8 @@ user_pref("ui.prefersReducedMotion", "1");
 user_pref("browser.urlbar.maxRichResults", "0");
 user_pref("browser.urlbar.disableExtendForTests", true);
 
+// VimFx options
+user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
+user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
+user_pref("extensions.VimFx.mode.normal.scroll_page_down", "D");
+user_pref("extensions.VimFx.mode.normal.scroll_page_up", "U");
