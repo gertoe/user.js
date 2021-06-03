@@ -929,7 +929,7 @@ user_pref("browser.helperApps.deleteTempFileOnExit",		true);
 // PREF: Don't fetch and permanently store favicons for Windows .URL shortcuts created by drag and drop
 // NOTICE: .URL shortcut files will be created with a generic icon
 // Favicons are stored as .ico files in $profile_dir\shortcutCache
-user_pref("browser.shell.shortcutFavicons",					false);
+//user_pref("browser.shell.shortcutFavicons",					false);
 
 // PREF: Disable bookmarks backups (default: 15)
 // http://kb.mozillazine.org/Browser.bookmarks.max_backups
@@ -944,7 +944,7 @@ user_pref("browser.bookmarks.max_backups", 0);
 // https://github.com/jonasstrehle/supercookie
 // http://kb.mozillazine.org/Browser.chrome.site_icons
 // https://blog.mozilla.org/security/2021/01/26/supercookie-protections/
-user_pref("browser.chrome.site_icons",				false);
+//user_pref("browser.chrome.site_icons",				false);
 
 /*******************************************************************************
  * SECTION: UI related                                                         *
