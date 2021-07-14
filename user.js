@@ -790,7 +790,8 @@ user_pref("network.cookie.cookieBehavior",			4);
 // https://wiki.mozilla.org/Security/FirstPartyIsolation
 // NOTICE: First-party isolation breaks Microsoft Teams
 // NOTICE: First-party isolation causes HTTP basic auth to ask for credentials for every new tab (see #425)
-user_pref("privacy.firstparty.isolate",				true);
+// NOTICE: First-party isolation breaks PayPal Checkout
+//user_pref("privacy.firstparty.isolate",				true);
 
 // PREF: Make sure that third-party cookies (if enabled) never persist beyond the session.
 // https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
