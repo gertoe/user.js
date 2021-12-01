@@ -1329,6 +1329,16 @@ user_pref("media.mediasource.webm.audio.enabled", false);
 user_pref("ui.prefersReducedMotion", "1");
 user_pref("browser.urlbar.maxRichResults", "0");
 user_pref("browser.urlbar.disableExtendForTests", true);
+// prevent newtab search field from redirecting to urlbar
+user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
+
+// Force NOT to use the Firefox-built-in widgets (theme specifics, e.g., scroll-bars etc.)
+user_pref("widget.non-native-theme.enabled", false);
+// override theme with custom gtk theme
+//user_pref("widget.content.gtk-theme-override", "Adwaita");
+// Disable dark scrollbar
+user_pref("widget.disable-dark-scrollbar", true);
+
 
 // VimFx options
 user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
