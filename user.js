@@ -782,7 +782,9 @@ user_pref("network.http.referer.XOriginPolicy",		2);
 //user_pref("network.cookie.cookieBehavior",			2);
 //
 // block all Third-party trackers (only)
-user_pref("network.cookie.cookieBehavior",			4);
+// user_pref("network.cookie.cookieBehavior",			4);
+// Cross-site and social media trackers. Isolate all other cookies.
+user_pref("network.cookie.cookieBehavior",			5);
 
 // PREF: Enable first-party isolation
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1299996
@@ -1330,6 +1332,7 @@ user_pref("startup.homepage_override_url", "");
 user_pref("ui.prefersReducedMotion", "1");
 user_pref("browser.urlbar.maxRichResults", "0");
 user_pref("browser.urlbar.disableExtendForTests", true);
+
 // prevent newtab search field from redirecting to urlbar
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
