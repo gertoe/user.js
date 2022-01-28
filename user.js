@@ -1321,9 +1321,10 @@ user_pref("security.tls.insecure_fallback_hosts", "duckduckgo.com");
 user_pref("startup.homepage_override_url", "");
 
 // Disable webm/opus for media sources to ensure distortion-free playback
-user_pref("media.webm.enabled", false);
-user_pref("media.mediasource.webm.enabled", false);
-user_pref("media.mediasource.webm.audio.enabled", false);
+// (pre-Kabylake/pre-Pascal)
+// user_pref("media.webm.enabled", false);
+// user_pref("media.mediasource.webm.enabled", false);
+// user_pref("media.mediasource.webm.audio.enabled", false);
 
 // Disable monstrous mega-bar
 user_pref("ui.prefersReducedMotion", "1");
@@ -1338,6 +1339,18 @@ user_pref("widget.non-native-theme.enabled", false);
 //user_pref("widget.content.gtk-theme-override", "Adwaita");
 // Disable dark scrollbar
 user_pref("widget.disable-dark-scrollbar", true);
+
+// HW media-decoding
+user_pref("media.ffmpeg.vaapi.enabled", true);
+user_pref("media.navigator.mediadatadecoder_vpx_enabled", true);
+// disable sw vpx decoder
+user_pref("media.ffvpx.enabled", false);
+// Disable RDD sandbox since it breaks hardware acceleration (Firefox < 96?)
+// TODO: Re-enable sandbox once hwaccel is fixed.
+user_pref("media.rdd-process.enabled", false);
+// Force enable EGL
+user_pref("gfx.x11-egl.force-enabled", true);
+user_pref("gfx.x11-egl.force-disabled", false);
 
 
 // VimFx options
