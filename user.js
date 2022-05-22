@@ -31,7 +31,9 @@ user_pref("dom.webnotifications.enabled",			false);
 // PREF: Disable DOM timing API
 // https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI
 // https://www.w3.org/TR/navigation-timing/#privacy
-user_pref("dom.enable_performance",				false);
+//user_pref("dom.enable_performance",				false);
+//
+// NOTE: May break various pages entirely.
 
 // PREF: Make sure the User Timing API does not provide a new high resolution timestamp
 // https://trac.torproject.org/projects/tor/ticket/16336
