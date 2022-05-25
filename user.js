@@ -181,9 +181,9 @@ user_pref("dom.archivereader.enabled",				false);
 // PREF: Disable webGL
 // https://en.wikipedia.org/wiki/WebGL
 // https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
-user_pref("webgl.disabled",					true);
+//user_pref("webgl.disabled",					true);
 // PREF: When webGL is enabled, use the minimum capability mode
-user_pref("webgl.min_capability_mode",				true);
+//user_pref("webgl.min_capability_mode",				true);
 // PREF: When webGL is enabled, disable webGL extensions
 // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API#WebGL_debugging_and_testing
 user_pref("webgl.disable-extensions",				true);
@@ -1107,7 +1107,7 @@ user_pref("security.OCSP.timeoutMilliseconds.hard", 20000);
 // https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-WP.pdf
 // https://bugzilla.mozilla.org/show_bug.cgi?id=917049
 // https://bugzilla.mozilla.org/show_bug.cgi?id=967977
-user_pref("security.ssl.disable_session_identifiers",		true);
+user_pref("security.ssl.disable_session_identifiers",		false);
 
 // PREF: Only allow TLS 1.[0-3]
 // http://kb.mozillazine.org/Security.tls.version.*
