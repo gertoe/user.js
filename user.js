@@ -548,13 +548,13 @@ user_pref("privacy.userContext.enabled",			true);
 // NOTICE: RFP changes your time zone
 // user_pref("privacy.resistFingerprinting",			true);
 //
-// NOTE: privacy.resistFingerprinting always sppofs "Windows NT" instead of the
+// NOTE: privacy.resistFingerprinting always spoofs "Windows NT" instead of the
 //       real OS on Waterfox.
 //
 /* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de, youtube.com) */
 /* 2020-03-13: heise.de works with resistFingerprinting enabled */
 /* 2020-04-10: youtube.com broken with resistFingerprinting enabled */
-user_pref("privacy.resistFingerprinting",			false);
+//user_pref("privacy.resistFingerprinting",			true);
 
 // PREF: disable mozAddonManager Web API [FF57+]
 // https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330
@@ -1338,8 +1338,16 @@ user_pref("browser.urlbar.disableExtendForTests", true);
 // prevent newtab search field from redirecting to urlbar
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
+/* Custom scrollbar preferences */
 // Force NOT to use the Firefox-built-in widgets (theme specifics, e.g., scroll-bars etc.)
 user_pref("widget.non-native-theme.enabled", false);
+user_pref("widget.non-native-theme.gtk.scrollbar.dark-themed", false);
+/* Enable scrollbar buttons */
+user_pref("widget.non-native-theme.gtk.scrollbar.allow-buttons", true);
+/* Rectangular scrollbar */
+user_pref("widget.non-native-theme.gtk.scrollbar.round-thumb", false);
+/* Scrollbar 'scale' (full width/no border) */
+user_pref("widget.non-native-theme.gtk.scrollbar.thumb-size", "1.0");
 // override theme with custom gtk theme
 //user_pref("widget.content.gtk-theme-override", "Adwaita");
 // Disable dark scrollbar
@@ -1352,14 +1360,17 @@ user_pref("media.navigator.mediadatadecoder_vpx_enabled", true);
 user_pref("media.ffvpx.enabled", false);
 // Disable RDD sandbox since it breaks hardware acceleration (Firefox < 96?)
 // TODO: Re-enable sandbox once hwaccel is fixed.
-user_pref("media.rdd-process.enabled", false);
+//user_pref("media.rdd-process.enabled", false);
 // Force enable EGL
 user_pref("gfx.x11-egl.force-enabled", true);
 user_pref("gfx.x11-egl.force-disabled", false);
 
+// Force download media files instead of playing with in-browser HTML5 player
+user_pref("media.play-stand-alone", false);
 
 // VimFx options
 user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
 user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
 user_pref("extensions.VimFx.mode.normal.scroll_page_down", "D");
 user_pref("extensions.VimFx.mode.normal.scroll_page_up", "U");
+
