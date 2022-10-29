@@ -13,16 +13,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
 // https://wiki.mozilla.org/Firefox/Push_Notifications#Service_Workers
 // NOTICE: Disabling ServiceWorkers breaks functionality on some sites (Google Street View...)
+// NOTICE: Disabling ServiceWorkers breaks Firefox Sync
 // Unknown security implications
 // CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
 user_pref("dom.serviceWorkers.enabled",				false);
-
-// PREF: Disable Web Workers
-// https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
-// https://www.w3schools.com/html/html5_webworkers.asp
-// NOTICE: Disabling Web Workers breaks "Download as ZIP" functionality on https://mega.nz/, WhatsApp Web and probably others
-//user_pref("dom.workers.enabled",					false);
-user_pref("dom.workers.enabled",					true);
 
 // PREF: Disable web notifications
 // https://support.mozilla.org/en-US/questions/1140439
@@ -34,6 +28,11 @@ user_pref("dom.webnotifications.enabled",			false);
 //user_pref("dom.enable_performance",				false);
 //
 // NOTE: May break various pages entirely.
+
+// PREF: Disable resource timing API
+// https://www.w3.org/TR/resource-timing/#privacy-security
+// NOTICE: Disabling resource timing API breaks some DDoS protection pages (Cloudflare)
+user_pref("dom.enable_resource_timing",				false);
 
 // PREF: Make sure the User Timing API does not provide a new high resolution timestamp
 // https://trac.torproject.org/projects/tor/ticket/16336
@@ -169,10 +168,6 @@ user_pref("dom.vr.enabled",					false);
 // PREF: Disable vibrator API
 user_pref("dom.vibrator.enabled",           false);
 
-// PREF: Disable resource timing API
-// https://www.w3.org/TR/resource-timing/#privacy-security
-user_pref("dom.enable_resource_timing",				false);
-
 // PREF: Disable Archive API (Firefox < 54)
 // https://wiki.mozilla.org/WebAPI/ArchiveAPI
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1342361
@@ -208,6 +203,7 @@ user_pref("dom.maxHardwareConcurrency",				4);
 // https://webassembly.org/
 // https://en.wikipedia.org/wiki/WebAssembly
 // https://trac.torproject.org/projects/tor/ticket/21549
+// NOTICE: WebAssembly is required for Unity web player/games
 //user_pref("javascript.options.wasm",				false);
 
 /******************************************************************************
@@ -237,6 +233,9 @@ user_pref("intl.accept_languages",				"en-US, en");
 // PREF: Don't use OS values to determine locale, force using Firefox locale setting
 // http://kb.mozillazine.org/Intl.locale.matchOS
 user_pref("intl.locale.matchOS",				false);
+
+// Use LANG environment variable to choose locale (disabled)
+//pref("intl.locale.requested", "");
 
 // PREF: Don't use Mozilla-provided location-specific search engines
 user_pref("browser.search.geoSpecificDefaults",			false);
@@ -321,7 +320,6 @@ user_pref("gfx.font_rendering.opentype_svg.enabled",		false);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 // https://github.com/iSECPartners/publications/raw/master/reports/Tor%20Browser%20Bundle/Tor%20Browser%20Bundle%20-%20iSEC%20Deliverable%201.3.pdf#16
 //user_pref("svg.disabled", true);
-
 
 // PREF: Disable video stats to reduce fingerprinting threat
 // https://bugzilla.mozilla.org/show_bug.cgi?id=654550
@@ -551,10 +549,12 @@ user_pref("privacy.userContext.enabled",			true);
 // NOTE: privacy.resistFingerprinting always spoofs "Windows NT" instead of the
 //       real OS on Waterfox.
 //
+// NOTICE: RFP breaks some DDoS protection pages (Cloudflare)
+//user_pref("privacy.resistFingerprinting",			true);
+//
 /* DISABLE DUE TO SOME BREAKAGE (e.g. heise.de, youtube.com) */
 /* 2020-03-13: heise.de works with resistFingerprinting enabled */
 /* 2020-04-10: youtube.com broken with resistFingerprinting enabled */
-//user_pref("privacy.resistFingerprinting",			true);
 
 // PREF: disable mozAddonManager Web API [FF57+]
 // https://bugzilla.mozilla.org/buglist.cgi?bug_id=1384330
@@ -690,6 +690,10 @@ user_pref("browser.search.suggest.enabled",			false);
 user_pref("browser.urlbar.suggest.searches",			false);
 // PREF: When using the location bar, don't suggest URLs from browsing history
 user_pref("browser.urlbar.suggest.history",			false);
+// PREF: Disable Firefox Suggest
+// https://www.ghacks.net/2021/09/09/how-to-disable-firefox-suggest/
+// https://support.mozilla.org/en-US/kb/navigate-web-faster-firefox-suggest
+user_pref("browser.urlbar.groupLabels.enabled", false); // Firefox >= 93
 
 // PREF: Disable SSDP
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1111967
@@ -886,7 +890,6 @@ user_pref("browser.formfill.enable",				false);
 // PREF: Cookies expires at the end of the session (when the browser closes)
 // http://kb.mozillazine.org/Network.cookie.lifetimePolicy#2
 user_pref("network.cookie.lifetimePolicy",			2);
-//user_pref("network.cookie.lifetimePolicy",			0);
 
 // PREF: Require manual intervention to autofill known username/passwords sign-in forms
 // http://kb.mozillazine.org/Signon.autofillForms
@@ -1055,6 +1058,11 @@ user_pref("browser.offline-apps.notify",			true);
  * SECTION: Cryptography                                                      *
  ******************************************************************************/
 
+// PREF: Enable HTTPS-Only Mode
+// https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/
+// https://www.feistyduck.com/bulletproof-tls-newsletter/issue_71_firefox_introduces_https_only_mode
+user_pref("dom.security.https_only_mode",			true);
+
 // PREF: Enable HSTS preload list (pre-set HSTS sites list provided by Mozilla)
 // https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
 // https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List
@@ -1109,19 +1117,19 @@ user_pref("security.OCSP.timeoutMilliseconds.hard", 20000);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=967977
 user_pref("security.ssl.disable_session_identifiers",		false);
 
-// PREF: Only allow TLS 1.[0-3]
+// PREF: Only allow TLS 1.[2-3]
 // http://kb.mozillazine.org/Security.tls.version.*
 // 1 = TLS 1.0 is the minimum required / maximum supported encryption protocol. (This is the current default for the maximum supported version.)
 // 2 = TLS 1.1 is the minimum required / maximum supported encryption protocol.
 // 3 = TLS 1.2 is the minimum required / maximum supported encryption protocol.
 // 4 = TLS 1.3 is the minimum required / maximum supported encryption protocol.
-//user_pref("security.tls.version.min",				1);
 user_pref("security.tls.version.min",				3);
 user_pref("security.tls.version.max",				4);
 
 // PREF: Disable insecure TLS version fallback
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1084025
 // https://github.com/pyllyukko/user.js/pull/206#issuecomment-280229645
+//user_pref("security.tls.version.fallback-limit",		4);
 user_pref("security.tls.version.fallback-limit",		3);
 
 // PREF: Enforce Public Key Pinning

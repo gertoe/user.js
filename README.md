@@ -14,7 +14,7 @@ A [user.js](http://kb.mozillazine.org/User.js_file) configuration file for [Mozi
 * Harden the browser against known data disclosure or code execution vulnerabilities.
 * Limit the browser from storing anything even remotely sensitive persistently.
 * Make sure the browser doesn't reveal too much information to [shoulder surfers](https://en.wikipedia.org/wiki/Shoulder_surfing_%28computer_security%29).
-* Harden the browser's encryption (cipher suites, protocols, trusted CAs).
+* Harden the browser's encryption (cipher suites, protocols).
 * Limit possibilities to uniquely identify the browser/device using [browser fingerprinting](https://en.wikipedia.org/wiki/Device_fingerprint).
 * Hopefully limit the attack surface by disabling various features.
 * Still be usable in daily use.
@@ -146,6 +146,7 @@ HTML5 / [APIs](https://wiki.mozilla.org/WebAPI) / [DOM](https://en.wikipedia.org
 * Disable Service Workers [ [1](https://developer.mozilla.org/en-US/docs/Web/API/Worker) [2](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API) [3](https://wiki.mozilla.org/Firefox/Push_Notifications#Service_Workers) ]
 * Disable web notifications [ [1](https://support.mozilla.org/en-US/questions/1140439) ]
 * Disable DOM timing API [ [1](https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI) [2](https://www.w3.org/TR/navigation-timing/#privacy) ]
+* Disable resource timing API [ [1](https://www.w3.org/TR/resource-timing/#privacy-security) ]
 * Make sure the User Timing API does not provide a new high resolution timestamp [ [1](https://trac.torproject.org/projects/tor/ticket/16336) [2](https://www.w3.org/TR/2013/REC-user-timing-20131212/#privacy-security) ]
 * Disable Web Audio API [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=1288359) ]
 * Disable Location-Aware Browsing (geolocation) [ [1](https://www.mozilla.org/en-US/firefox/geolocation/) ]
@@ -170,7 +171,6 @@ HTML5 / [APIs](https://wiki.mozilla.org/WebAPI) / [DOM](https://en.wikipedia.org
 * Disable gamepad API to prevent USB device enumeration [ [1](https://www.w3.org/TR/gamepad/) [2](https://trac.torproject.org/projects/tor/ticket/13023) ]
 * Disable virtual reality devices APIs [ [1](https://developer.mozilla.org/en-US/Firefox/Releases/36#Interfaces.2FAPIs.2FDOM) [2](https://developer.mozilla.org/en-US/docs/Web/API/WebVR_API) ]
 * Disable vibrator API
-* Disable resource timing API [ [1](https://www.w3.org/TR/resource-timing/#privacy-security) ]
 * Disable Archive API (Firefox < 54) [ [1](https://wiki.mozilla.org/WebAPI/ArchiveAPI) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=1342361) ]
 * Disable webGL [ [1](https://en.wikipedia.org/wiki/WebGL) [2](https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/) ]
 * When webGL is enabled, use the minimum capability mode
@@ -265,6 +265,7 @@ Prevents the browser from [auto-connecting](https://support.mozilla.org/en-US/kb
 * Disable search suggestions in the search bar [ [1](http://kb.mozillazine.org/Browser.search.suggest.enabled) ]
 * Disable "Show search suggestions in location bar results"
 * When using the location bar, don't suggest URLs from browsing history
+* Disable Firefox Suggest [ [1](https://www.ghacks.net/2021/09/09/how-to-disable-firefox-suggest/) [2](https://support.mozilla.org/en-US/kb/navigate-web-faster-firefox-suggest) ]
 * Disable SSDP [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=1111967) ]
 * Disable automatic downloading of OpenH264 codec [ [1](https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_media-capabilities) [2](https://andreasgal.com/2014/10/14/openh264-now-in-firefox/) ]
 * Disable speculative pre-connections [ [1](https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_speculative-pre-connections) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=814169) ]
@@ -335,13 +336,14 @@ Improve visibility of security-related elements, mitigate shoulder-surfing
 ### Cryptography
 
 [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) protocol related settings
+* Enable HTTPS-Only Mode [ [1](https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/) [2](https://www.feistyduck.com/bulletproof-tls-newsletter/issue_71_firefox_introduces_https_only_mode) ]
 * Enable HSTS preload list (pre-set HSTS sites list provided by Mozilla) [ [1](https://blog.mozilla.org/security/2012/11/01/preloading-hsts/) [2](https://wiki.mozilla.org/Privacy/Features/HSTS_Preload_List) [3](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) ]
 * Enable Online Certificate Status Protocol [ [1](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol) [2](https://www.imperialviolet.org/2014/04/19/revchecking.html) [3](https://www.maikel.pro/blog/current-state-certificate-revocation-crls-ocsp/) [4](https://wiki.mozilla.org/CA:RevocationPlan) [5](https://wiki.mozilla.org/CA:ImprovingRevocation) [6](https://wiki.mozilla.org/CA:OCSP-HardFail) [7](https://news.netcraft.com/archives/2014/04/24/certificate-revocation-why-browsers-remain-affected-by-heartbleed.html) [8](https://news.netcraft.com/archives/2013/04/16/certificate-revocation-and-the-performance-of-ocsp.html) ]
 * Enable OCSP Stapling support [ [1](https://en.wikipedia.org/wiki/OCSP_stapling) [2](https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/) [3](https://www.digitalocean.com/community/tutorials/how-to-configure-ocsp-stapling-on-apache-and-nginx) ]
 * Enable OCSP Must-Staple support (Firefox >= 45) [ [1](https://blog.mozilla.org/security/2015/11/23/improving-revocation-ocsp-must-staple-and-short-lived-certificates/) [2](https://www.entrust.com/ocsp-must-staple/) [3](https://github.com/schomery/privacy-settings/issues/40) ]
 * Require a valid OCSP response for OCSP enabled certificates [ [1](https://groups.google.com/forum/#!topic/mozilla.dev.security/n1G-N2-HTVA) ]
 * Disable TLS Session Tickets [ [1](https://www.blackhat.com/us-13/briefings.html#NextGen) [2](https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-Slides.pdf) [3](https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-WP.pdf) [4](https://bugzilla.mozilla.org/show_bug.cgi?id=917049) [5](https://bugzilla.mozilla.org/show_bug.cgi?id=967977) ]
-* Only allow TLS 1.[0-3] [ [1](http://kb.mozillazine.org/Security.tls.version.*) ]
+* Only allow TLS 1.[2-3] [ [1](http://kb.mozillazine.org/Security.tls.version.*) ]
 * Disable insecure TLS version fallback [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=1084025) [2](https://github.com/pyllyukko/user.js/pull/206#issuecomment-280229645) ]
 * Enforce Public Key Pinning [ [1](https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning) [2](https://wiki.mozilla.org/SecurityEngineering/Public_Key_Pinning) ]
 * Disallow SHA-1 [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=1302140) [2](https://shattered.io/) ]
@@ -372,7 +374,7 @@ This section tweaks the cipher suites used by Firefox. The idea is to support on
 
 **This is not enough!** Here's some other tips how you can further harden Firefox:
 
-* By default **your browser trusts 100's of [Certificate Authorities](https://en.wikipedia.org/wiki/Certificate_authority)** (CAs) from various organizations to guarantee privacy of your encrypted communications with websites. Some CAs have been known for misusing or deliberately abusing this power in the past, and **a single malicious CA can compromise all** your encrypted communications! Follow [this document](CAs.md) to only trust a selected, trimmed-down list of CAs.
+* By default **your browser trusts 100's of [Certificate Authorities](https://en.wikipedia.org/wiki/Certificate_authority)** (CAs) from various organizations to guarantee privacy of your encrypted communications with websites. Some CAs have been known for misusing or deliberately abusing this power in the past, and **a single malicious CA can compromise all** your encrypted communications! To workaround this you may want to [inspect the list of trusted certificates](https://support.mozilla.org/en-US/kb/advanced-panel-settings-in-firefox?#w_certificates-tab). [[1](https://blog.torproject.org/blog/life-without-ca)]
 * Keep your browser updated! If you check [Firefox's security advisories](https://www.mozilla.org/security/known-vulnerabilities/firefox.html), you'll see that pretty much every new version of Firefox contains some security updates. If you don't keep your browser updated, you've already lost the game.
 * Disable/uninstall all unnecessary extensions and plugins!
 * Use long and **unique** passwords/passphrases for each website/service.
@@ -395,12 +397,9 @@ Here is a list of the most essential security and privacy enhancing add-ons that
   * For additional protection, set it to [Hard mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode) (experienced users) - the default is [Easy mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-easy-mode)
 * [HTTPS Everywhere](https://www.eff.org/https-everywhere)
   * For additional protection, enable `Block all unencrypted requests` in the toolbar button menu. This will break websites where HTTPS is not available.
-* [Certificate Patrol](http://patrol.psyced.org/) (experienced users)
-  * Setting `Store certificates even when in Private Browsing mode` improves usability. This will store information about sites you visit.
+* [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/) - when a tab closes, any cookies not being used are automatically deleted. Whitelist the ones you trust while deleting the rest.
 * [NoScript](https://noscript.net/)
-* [No Resource URI Leak](https://addons.mozilla.org/firefox/addon/no-resource-uri-leak/) [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=863246) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=903959) [3](https://www.browserleaks.com/firefox) [4](https://cs1.ca/ttest/dump.html) [5](https://trac.torproject.org/projects/tor/ticket/8725) ]
 * [Decentraleyes](https://addons.mozilla.org/firefox/addon/decentraleyes/)
-* [Canvas Blocker](https://addons.mozilla.org/firefox/addon/canvasblocker/)
 
 Additional add-ons that you might consider using or reading about:
 
@@ -416,6 +415,8 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 
 <!-- BEGIN PROBLEMS-LIMITATIONS -->
 * Disabling ServiceWorkers breaks functionality on some sites (Google Street View...)
+* Disabling ServiceWorkers breaks Firefox Sync
+* Disabling resource timing API breaks some DDoS protection pages (Cloudflare)
 * Web Audio API is required for Unity web player/games
 * Disabling WebRTC breaks peer-to-peer file sharing tools (reep.io ...)
 * Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
@@ -427,6 +428,7 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Containers are not available in Private Browsing mode
 * RFP breaks some keyboard shortcuts used in certain websites (see #443)
 * RFP changes your time zone
+* RFP breaks some DDoS protection pages (Cloudflare)
 * Fully automatic updates are disabled and left to package management systems on Linux. Windows users may want to change this setting.
 * Update check page might incorrectly report Firefox ESR as out-of-date
 * Do No Track must be enabled manually
@@ -572,6 +574,7 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * [A brief guide to Mozilla preferences](https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences)
 * [Mozilla preferences for uber-geeks](https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Mozilla_preferences_for_uber-geeks)
 * [Privacy & Security related add-ons](https://addons.mozilla.org/firefox/extensions/privacy-security/) ([RSS](https://addons.mozilla.org/en-US/firefox/extensions/privacy-security/format:rss?sort=featured))
+* [libpref — Firefox Source Docs documentation](https://firefox-source-docs.mozilla.org/modules/libpref/index.html)
 
 #### Other documentation
 
