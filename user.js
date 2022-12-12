@@ -1061,7 +1061,7 @@ user_pref("browser.offline-apps.notify",			true);
 // PREF: Enable HTTPS-Only Mode
 // https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/
 // https://www.feistyduck.com/bulletproof-tls-newsletter/issue_71_firefox_introduces_https_only_mode
-user_pref("dom.security.https_only_mode",			true);
+//user_pref("dom.security.https_only_mode",			true);
 
 // PREF: Enable HSTS preload list (pre-set HSTS sites list provided by Mozilla)
 // https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
@@ -1103,7 +1103,7 @@ user_pref("security.ssl.enable_ocsp_must_staple",		true);
 // Disabling this will make OCSP bypassable by MitM attacks suppressing OCSP responses
 // NOTICE: `security.OCSP.require` will make the connection fail when the OCSP responder is unavailable
 // NOTICE: `security.OCSP.require` is known to break browsing on some [captive portals](https://en.wikipedia.org/wiki/Captive_portal)
-user_pref("security.OCSP.require",				true);
+//user_pref("security.OCSP.require",				true);
 
 // Increase OCSP timeout to maximum for slow connections
 user_pref("security.OCSP.timeoutMilliseconds.soft", 5000);
