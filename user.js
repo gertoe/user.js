@@ -597,6 +597,7 @@ user_pref("browser.discovery.enabled",				false);
 // https://github.com/mozilla/normandy
 // https://support.mozilla.org/en-US/kb/shield
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1370801
+// https://wiki.mozilla.org/Firefox/Normandy/PreferenceRollout
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 user_pref("extensions.shield-recipe-client.enabled",		false);
@@ -723,6 +724,11 @@ user_pref("browser.aboutHomeSnippets.updateUrl",		"");
 // PREF: Disable automatic captive portal detection (Firefox >= 52.0)
 // https://support.mozilla.org/en-US/questions/1157121
 user_pref("network.captive-portal-service.enabled",		false);
+
+// PREF: Disable (parts of?) "TopSites"
+user_pref("browser.topsites.contile.enabled",				false);
+user_pref("browser.newtabpage.activity-stream.feeds.topsites",		false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites",	false);
 
 /******************************************************************************
  * SECTION: HTTP                                                              *
