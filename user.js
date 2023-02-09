@@ -727,7 +727,7 @@ user_pref("network.captive-portal-service.enabled",		false);
 
 // PREF: Disable (parts of?) "TopSites"
 user_pref("browser.topsites.contile.enabled",				false);
-user_pref("browser.newtabpage.activity-stream.feeds.topsites",		false);
+//user_pref("browser.newtabpage.activity-stream.feeds.topsites",		false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites",	false);
 
 /******************************************************************************
