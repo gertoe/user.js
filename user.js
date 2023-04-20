@@ -778,11 +778,12 @@ user_pref("privacy.donottrackheader.enabled",		true);
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
 //user_pref("network.http.referer.spoofSource",			true);
 
+/* Note: Breaks several Webpages, e.g, dpreview.com */
 // PREF: Don't send referer headers when following links across different domains
 // https://github.com/pyllyukko/user.js/issues/227
 // https://github.com/pyllyukko/user.js/issues/328
 // https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
-user_pref("network.http.referer.XOriginPolicy",		2);
+//user_pref("network.http.referer.XOriginPolicy",		2);
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
