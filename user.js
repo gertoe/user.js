@@ -1045,7 +1045,7 @@ user_pref("layout.css.visited_links_enabled",			false);
 
 // PREF: Disable URL bar autocomplete and history/bookmarks suggestions dropdown
 // http://kb.mozillazine.org/Disabling_autocomplete_-_Firefox#Firefox_3.5
-user_pref("browser.urlbar.autocomplete.enabled",		false);
+// user_pref("browser.urlbar.autocomplete.enabled",		false);
 
 // PREF: Do not check if Firefox is the default browser
 user_pref("browser.shell.checkDefaultBrowser",			false);
@@ -1347,7 +1347,9 @@ user_pref("startup.homepage_override_url", "");
 
 // Disable monstrous mega-bar
 user_pref("ui.prefersReducedMotion", "1");
+// disables search suggestions as well
 user_pref("browser.urlbar.maxRichResults", "0");
+// no effect?
 user_pref("browser.urlbar.disableExtendForTests", true);
 
 // prevent newtab search field from redirecting to urlbar
