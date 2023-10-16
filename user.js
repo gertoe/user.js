@@ -16,7 +16,7 @@
 // NOTICE: Disabling ServiceWorkers breaks Firefox Sync
 // Unknown security implications
 // CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
-user_pref("dom.serviceWorkers.enabled",				false);
+//user_pref("dom.serviceWorkers.enabled",				false);
 
 // PREF: Disable web notifications
 // https://support.mozilla.org/en-US/questions/1140439
@@ -32,7 +32,7 @@ user_pref("dom.webnotifications.enabled",			false);
 // PREF: Disable resource timing API
 // https://www.w3.org/TR/resource-timing/#privacy-security
 // NOTICE: Disabling resource timing API breaks some DDoS protection pages (Cloudflare)
-user_pref("dom.enable_resource_timing",				false);
+//user_pref("dom.enable_resource_timing",				false);
 
 // PREF: Make sure the User Timing API does not provide a new high resolution timestamp
 // https://trac.torproject.org/projects/tor/ticket/16336
@@ -286,7 +286,7 @@ user_pref("security.mixed_content.block_display_content",	false);
 
 // PREF: Disable JAR from opening Unsafe File Types
 // http://kb.mozillazine.org/Network.jar.open-unsafe-types
-// CIS Mozilla Firefox 24 ESR v1.0.0 - 3.7 
+// CIS Mozilla Firefox 24 ESR v1.0.0 - 3.7
 user_pref("network.jar.open-unsafe-types",			false);
 
 // CIS 2.7.4 Disable Scripting of Plugins by JavaScript
@@ -300,7 +300,7 @@ user_pref("security.fileuri.strict_origin_policy",		true);
 
 // PREF: Disable Displaying Javascript in History URLs
 // http://kb.mozillazine.org/Browser.urlbar.filter.javascript
-// CIS 2.3.6 
+// CIS 2.3.6
 user_pref("browser.urlbar.filter.javascript",			true);
 
 // PREF: Disable asm.js
@@ -1382,6 +1382,10 @@ user_pref("gfx.x11-egl.force-disabled", false);
 
 // Force download media files instead of playing with in-browser HTML5 player
 user_pref("media.play-stand-alone", false);
+
+// Fix Broken Downloads:
+user_pref("browser.download.start_downloads_in_tmp_dir", true);
+
 
 // VimFx options
 user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
