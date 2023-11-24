@@ -176,7 +176,9 @@ user_pref("dom.archivereader.enabled",				false);
 // PREF: Disable webGL
 // https://en.wikipedia.org/wiki/WebGL
 // https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
+// NOTICE: Disabling WebGL breaks WebGL-based websites/applications (windy, meteoblue...)
 //user_pref("webgl.disabled",					true);
+user_pref("webgl.disabled",					true);
 // PREF: When webGL is enabled, use the minimum capability mode
 //user_pref("webgl.min_capability_mode",				true);
 // PREF: When webGL is enabled, disable webGL extensions
@@ -204,7 +206,7 @@ user_pref("dom.maxHardwareConcurrency",				4);
 // https://en.wikipedia.org/wiki/WebAssembly
 // https://trac.torproject.org/projects/tor/ticket/21549
 // NOTICE: WebAssembly is required for Unity web player/games
-//user_pref("javascript.options.wasm",				false);
+user_pref("javascript.options.wasm",				false);
 
 /******************************************************************************
  * SECTION: Misc                                                              *
@@ -736,7 +738,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites",	false);
  ******************************************************************************/
 
 // fix L²P/Microsoft Sharepoint login with Firefox >= 30.0 (Non-Windows)
-user_pref("network.auth.force-generic-ntlm-v1", true);
+// user_pref("network.auth.force-generic-ntlm-v1", true);
 // possibly also required:
 // user_pref("network.auth.force-generic-ntlm", true);
 // user_pref("network.automatic-ntlm-auth.allow-non-fqdn", true);
@@ -1019,6 +1021,13 @@ user_pref("browser.newtab.preload",				false);
 user_pref("browser.newtabpage.directory.ping",			"");
 user_pref("browser.newtabpage.directory.source",		"data:text/plain,{}");
 
+// PREF: Disable Mozilla VPN ads on the about:protections page
+// https://support.mozilla.org/en-US/kb/what-mozilla-vpn-and-how-does-it-work
+// https://en.wikipedia.org/wiki/Mozilla_VPN
+// https://blog.mozilla.org/security/2021/08/31/mozilla-vpn-security-audit/
+// https://www.mozilla.org/en-US/security/advisories/mfsa2021-31/
+user_pref("browser.vpn_promo.enabled",			false);
+
 // PREF: Enable Auto Notification of Outdated Plugins (Firefox < 50)
 // https://wiki.mozilla.org/Firefox3.6/Plugin_Update_Awareness_Security_Review
 // CIS Version 1.2.0 October 21st, 2011 2.1.2
@@ -1069,7 +1078,7 @@ user_pref("browser.offline-apps.notify",			true);
 // PREF: Enable HTTPS-Only Mode
 // https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/
 // https://www.feistyduck.com/bulletproof-tls-newsletter/issue_71_firefox_introduces_https_only_mode
-//user_pref("dom.security.https_only_mode",			true);
+user_pref("dom.security.https_only_mode",			true);
 
 // PREF: Enable HSTS preload list (pre-set HSTS sites list provided by Mozilla)
 // https://blog.mozilla.org/security/2012/11/01/preloading-hsts/
@@ -1123,7 +1132,7 @@ user_pref("security.OCSP.timeoutMilliseconds.hard", 20000);
 // https://media.blackhat.com/us-13/US-13-Daigniere-TLS-Secrets-WP.pdf
 // https://bugzilla.mozilla.org/show_bug.cgi?id=917049
 // https://bugzilla.mozilla.org/show_bug.cgi?id=967977
-user_pref("security.ssl.disable_session_identifiers",		false);
+user_pref("security.ssl.disable_session_identifiers",		true);
 
 // PREF: Only allow TLS 1.[2-3]
 // http://kb.mozillazine.org/Security.tls.version.*
@@ -1385,6 +1394,12 @@ user_pref("gfx.x11-egl.force-disabled", false);
 
 // Force download media files instead of playing with in-browser HTML5 player
 user_pref("media.play-stand-alone", false);
+
+// Do not ignore static host definitions
+user_pref("network.trr.exclude-etc-hosts",					true);
+// ignore local domains
+user_pref("network.trr.excluded-domains",	"local,localhost,box");
+
 
 // Fix Broken Downloads:
 user_pref("browser.download.start_downloads_in_tmp_dir", true);

@@ -6,7 +6,7 @@ A [user.js](http://kb.mozillazine.org/User.js_file) configuration file for [Mozi
 
 **This is a default template with every possible hardening measure enforced. See the [relaxed branch](https://github.com/pyllyukko/user.js/tree/relaxed) for a variant providing more usability**
 
-[![Build Status](https://travis-ci.org/pyllyukko/user.js.svg?branch=master)](https://travis-ci.org/pyllyukko/user.js)
+[![Build Status](https://github.com/pyllyukko/user.js/actions/workflows/ci.yml/badge.svg)](https://github.com/pyllyukko/user.js/actions)
 
 ### Main goals
 
@@ -38,6 +38,7 @@ There are several parts to all this and they are:
 * [Contributing](#contributing)
 * [Online tests](#online-tests)
 * [References](#references)
+* [Maintenance](#maintenance)
 
 
 ----------------------------------------------
@@ -115,6 +116,22 @@ If `mozilla.cfg` still fails to load, you must add a blank comment to the top of
 //
 ```
 
+
+### Additional settings (policies)
+
+Not all Firefox settings can be changed through `user.js` - some must be set in a separate **policies.json** file [[1]](https://support.mozilla.org/en-US/products/firefox-enterprise/policies-customization-enterprise/policies-overview-enterprise). These policies apply system-wide.
+
+To install [policies.json](policies.json) from this repository, simply copy it to the appropriate directory (create it if it does not exist):
+
+| OS                        | Path                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| Windows                   | `C:\Program Files (x86)\Mozilla Firefox\distribution\`                          |
+| OS X                      | `/Applications/Firefox.app/distribution\`                                       |
+| Linux (Debian)            | `/etc/firefox-esr/policies/`                                                    |
+
+Note that JSON does not support comments, hence settings are documented in custom `*_comment` keys. Mozilla maintains a list of available policies: [[1]](https://mozilla.github.io/policy-templates/) [[2]](https://github.com/mozilla/policy-templates). The [Enterprise Policy Generator](https://addons.mozilla.org/en-US/firefox/addon/enterprise-policy-generator/) add-on can be used to generate `policies.json` files from a graphical interface.
+
+
 ### Updating using git
 
 For any of the above methods, you can keep your browser's `user.js` with the latest version available here: Clone the repository, and create a symbolic link from the appropriate location to the `user.js` file in the repository. Just run `git pull` in the repository when you want to update, then restart Firefox:
@@ -129,6 +146,8 @@ ln -s ../user.js/user.js user.js
 ### Verifying
 
 Verify that the settings are effective from [about:support](http://kb.mozillazine.org/Troubleshooting_Information_report#Modified_Preferences) (check the "Important Modified Preferences" and "user.js Preferences" sections).
+
+Verify that policies are effective from [about:policies](https://support.mozilla.org/en-US/kb/see-active-policies-firefox-enterprise).
 
 --------------------------------------------
 
@@ -324,6 +343,7 @@ Improve visibility of security-related elements, mitigate shoulder-surfing
 * Disable Snippets [ [1](https://wiki.mozilla.org/Firefox/Projects/Firefox_Start/Snippet_Service) [2](https://support.mozilla.org/en-US/kb/snippets-firefox-faq) ]
 * Disable Activity Stream [ [1](https://wiki.mozilla.org/Firefox/Activity_Stream) ]
 * Disable new tab tile ads & preload [ [1](http://www.thewindowsclub.com/disable-remove-ad-tiles-from-firefox) [2](http://forums.mozillazine.org/viewtopic.php?p=13876331#p13876331) [3](https://wiki.mozilla.org/Tiles/Technical_Documentation#Ping) [4](https://gecko.readthedocs.org/en/latest/browser/browser/DirectoryLinksProvider.html#browser-newtabpage-directory-source) [5](https://gecko.readthedocs.org/en/latest/browser/browser/DirectoryLinksProvider.html#browser-newtabpage-directory-ping) ]
+* Disable Mozilla VPN ads on the about:protections page [ [1](https://support.mozilla.org/en-US/kb/what-mozilla-vpn-and-how-does-it-work) [2](https://en.wikipedia.org/wiki/Mozilla_VPN) [3](https://blog.mozilla.org/security/2021/08/31/mozilla-vpn-security-audit/) [4](https://www.mozilla.org/en-US/security/advisories/mfsa2021-31/) ]
 * Enable Auto Notification of Outdated Plugins (Firefox < 50) [ [1](https://wiki.mozilla.org/Firefox3.6/Plugin_Update_Awareness_Security_Review) ]
 * Force Punycode for Internationalized Domain Names [ [1](http://kb.mozillazine.org/Network.IDN_show_punycode) [2](https://www.xudongz.com/blog/2017/idn-phishing/) [3](https://wiki.mozilla.org/IDN_Display_Algorithm) [4](https://en.wikipedia.org/wiki/IDN_homograph_attack) [5](https://www.mozilla.org/en-US/security/advisories/mfsa2017-02/) ]
 * Disable inline autocomplete in URL bar [ [1](http://kb.mozillazine.org/Inline_autocomplete) ]
@@ -422,6 +442,7 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Disabling WebRTC breaks peer-to-peer file sharing tools (reep.io ...)
 * Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
 * Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
+* Disabling WebGL breaks WebGL-based websites/applications (windy, meteoblue...)
 * WebAssembly is required for Unity web player/games
 * Enabling Mixed Display Content blocking can prevent images/styles... from loading properly when connection to the website is only partially secured
 * Disabling nonessential protocols breaks all interaction with custom protocols such as mailto:, irc:, magnet: ... and breaks opening third-party mail/messaging/torrent/... clients when clicking on links with these protocols
@@ -571,11 +592,11 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * [Polaris - advance privacy technology for the web](https://wiki.mozilla.org/Polaris)
 * [Mozilla Privacy Principles](https://wiki.mozilla.org/Privacy/Principles)
 * [List of Firefox "about:" URLs](https://developer.mozilla.org/en-US/Firefox/The_about_protocol)
-* [Policy Templates for Firefox](https://github.com/mozilla/policy-templates)
 * [A brief guide to Mozilla preferences](https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences)
 * [Mozilla preferences for uber-geeks](https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Mozilla_preferences_for_uber-geeks)
 * [Privacy & Security related add-ons](https://addons.mozilla.org/firefox/extensions/privacy-security/) ([RSS](https://addons.mozilla.org/en-US/firefox/extensions/privacy-security/format:rss?sort=featured))
 * [libpref — Firefox Source Docs documentation](https://firefox-source-docs.mozilla.org/modules/libpref/index.html)
+* [Firefox Source Tree documentation](https://firefox-source-docs.mozilla.org/index.html)
 
 #### Other documentation
 
@@ -601,6 +622,37 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * [Server-side TLS configuration](https://wiki.mozilla.org/Security/Server_Side_TLS)
 
 --------------------------------------------------------------------------
+
+## Maintenance
+
+Run `make help` to get a list of makefile targets used for frequent maintenance operations.
+
+```
+$ make help 
+locked_user.js      generate a locked configuration file
+systemwide_user.js  generate a system-wide configuration file
+debian_locked.js    generate a locked, system-wide configuration file
+policies.json       generate policy file (https://github.com/mozilla/policy-templates/blob/master/README.md)
+tests               run all tests
+test-acorn          validate user.js syntax
+test-shellcheck     check/lint shell scripts
+000-tor-browser.js  download Tor Browser custom configuration reference
+diff-tbb            differences between values from this user.js and tor browser's values
+diff-tbb-2          differences between values from this user.js and tor browser's values (alternate method)
+diff-tbb-missing-from-user.js           preferences that are present in tor browser's defaults, but not in this user.js
+diff-sourceprefs.js download and sort all known preferences files from Firefox (mozilla-central) source
+diff-upstream-duplicates                preferences with common values with default Firefox configuration
+diff-upstream-missing-from-user.js      preferences present in firefox source but not covered by user.js
+diff-upstream-deprecated                preferences in hardened user.js that are no longer present in firefox source
+diff-stats          count preferences number, various stats
+clean               clean automatically generated files/build/test artifacts
+doc-whatdoesitdo    generate the README "What does it do?" section
+doc-toc             generate the README table of contents
+help                generate list of targets with descriptions
+
+```
+
+-----------------------------
 
 [2]: https://wiki.mozilla.org/Security:Renegotiation#security.ssl.require_safe_negotiation
 [8]: https://support.mozilla.org/en-US/kb/Private%20Browsing
