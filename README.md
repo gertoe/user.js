@@ -180,8 +180,8 @@ HTML5 / [APIs](https://wiki.mozilla.org/WebAPI) / [DOM](https://en.wikipedia.org
 * Disable battery API (Firefox < 52) [ [1](https://developer.mozilla.org/en-US/docs/Web/API/BatteryManager) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=1313580) ]
 * Disable telephony API [ [1](https://wiki.mozilla.org/WebAPI/Security/WebTelephony) ]
 * Disable "beacon" asynchronous HTTP transfers (used for analytics) [ [1](https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon) ]
-* Disable clipboard event detection (onCut/onCopy/onPaste) via Javascript
-* Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
+* Disable clipboard event detection (onCut/onCopy/onPaste) via Javascript [ [1](https://web.archive.org/web/20210416195937/https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/dom.event.clipboardevents.enabled) [2](https://github.com/pyllyukko/user.js/issues/287) ]
+* Disable "copy to clipboard" functionality via Javascript (Firefox >= 41) [ [1](https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3) [2](https://github.com/pyllyukko/user.js/issues/287) ]
 * Disable speech recognition [ [1](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html) [2](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition) [3](https://wiki.mozilla.org/HTML5_Speech_API) ]
 * Disable speech synthesis [ [1](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) ]
 * Disable sensor API [ [1](https://wiki.mozilla.org/Sensor_API) ]
@@ -211,6 +211,7 @@ Settings that do not belong to other sections or are user specific preferences.
 * Prevent leaking application locale/date format using JavaScript [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=867501) [2](https://hg.mozilla.org/mozilla-central/rev/52d635f2b33d) ]
 * Do not submit invalid URIs entered in the address bar to the default search engine [ [1](http://kb.mozillazine.org/Keyword.enabled) ]
 * Don't trim HTTP off of URLs in the address bar. [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=665580) ]
+* Disable preloading of autocomplete URLs. [ [1](https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks) ]
 * Don't try to guess domain names when entering an invalid domain name in URL bar [ [1](http://www-archive.mozilla.org/docs/end-user/domain-guessing.html) ]
 * When browser.fixup.alternate.enabled is enabled, strip password from 'user:password@...' URLs [ [1](https://github.com/pyllyukko/user.js/issues/290#issuecomment-303560851) ]
 * Send DNS request through SOCKS when SOCKS proxying is in use [ [1](https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers) ]
@@ -273,6 +274,7 @@ Disable Firefox integrated metrics/reporting/experiments, disable potentially in
 * Disable querying Google Application Reputation database for downloaded binary files [ [1](https://www.mozilla.org/en-US/firefox/39.0/releasenotes/) [2](https://wiki.mozilla.org/Security/Application_Reputation) ]
 * Disable Pocket [ [1](https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox) [2](https://github.com/pyllyukko/user.js/issues/143) ]
 * Disable "Recommended by Pocket" in Firefox Quantum
+* Enable Global Privacy Control (GPC) (Firefox >= 120) [ [1](https://support.mozilla.org/1/firefox/126.0/Linux/en-US/global-privacy-control) [2](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-GPC) [3](https://globalprivacycontrol.org/) ]
 
 ### Automatic connections
 
@@ -300,7 +302,9 @@ HTTP protocol related entries. This affects cookies, the user agent, referer and
 * Enable CSP 1.1 script-nonce directive support [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=855326) ]
 * Enable Content Security Policy (CSP) [ [1](https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy) [2](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) ]
 * Enable Subresource Integrity [ [1](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) [2](https://wiki.mozilla.org/Security/Subresource_Integrity) ]
-* Don't send referer headers when following links across different domains [ [1](https://github.com/pyllyukko/user.js/issues/227) [2](https://github.com/pyllyukko/user.js/issues/328) [3](https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/) ]
+* Don't send referer headers when following links across different domains [ [1](https://github.com/pyllyukko/user.js/issues/227) [2](https://github.com/pyllyukko/user.js/issues/328) [3](https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/) [4](https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks) ]
+* Trim HTTP referer headers to only send the scheme, host, and port [ [1](https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks) ]
+* When sending Referer across domains, only send scheme, host, and port in the Referer header [ [1](https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks) ]
 * Accept Only 1st Party Cookies [ [1](http://kb.mozillazine.org/Network.cookie.cookieBehavior#1) ]
 * Enable first-party isolation [ [1](https://bugzilla.mozilla.org/show_bug.cgi?id=1299996) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=1260931) [3](https://wiki.mozilla.org/Security/FirstPartyIsolation) ]
 * Make sure that third-party cookies (if enabled) never persist beyond the session. [ [1](https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/) [2](http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly) [3](https://developer.mozilla.org/en-US/docs/Cookies_Preferences_in_Mozilla#network.cookie.thirdparty.sessionOnly) ]
@@ -314,6 +318,7 @@ Enable and configure private browsing mode, don't store information locally duri
 * Set time range to "Everything" as default in "Clear Recent History"
 * Clear everything but "Site Preferences" in "Clear Recent History"
 * Don't remember browsing history
+* Don't remember recently closed tabs
 * Disable disk cache [ [1](http://kb.mozillazine.org/Browser.cache.disk.enable) ]
 * Disable Caching of SSL Pages
 * Disable download history
@@ -387,6 +392,7 @@ This section tweaks the cipher suites used by Firefox. The idea is to support on
 * Enable ChaCha20 and Poly1305 (Firefox >= 47) [ [1](https://www.mozilla.org/en-US/firefox/47.0/releasenotes/) [2](https://tools.ietf.org/html/rfc7905) [3](https://bugzilla.mozilla.org/show_bug.cgi?id=917571) [4](https://bugzilla.mozilla.org/show_bug.cgi?id=1247860) [5](https://cr.yp.to/chacha.html) ]
 * Disable ciphers susceptible to the logjam attack [ [1](https://weakdh.org/) ]
 * Disable ciphers with DSA (max 1024 bits)
+* Enable X25519Kyber768Draft00 (post-quantum key exchange) [FF Nightly 2024-01-18+] [ [1](https://datatracker.ietf.org/doc/draft-tls-westerbaan-xyber768d00/) [2](https://twitter.com/bwesterb/status/1748017372764475519) [3](https://pq.cloudflareresearch.com/) ]
 <!-- END SECTION -->
 
 -------------------------------------------------------------------------
@@ -407,7 +413,7 @@ This section tweaks the cipher suites used by Firefox. The idea is to support on
 * Change the Firefox's built-in tracking protection to use the [strict list](https://support.mozilla.org/en-US/kb/tracking-protection-pbm?as=u#w_change-your-block-list)
 * Change the timezone for Firefox by using the `TZ` environment variable (see [here](https://wiki.archlinux.org/index.php/Firefox_privacy#Change_browser_time_zone)) to reduce it's value in browser fingerprinting
 * If you are concerned about more advanced threats, use specialized hardened operating systems and browsers such as [Tails](https://tails.boum.org/) or [Tor Brower Bundle](https://www.torproject.org/projects/torbrowser.html.en)
-
+* [Do Not Track (DNT)](https://en.wikipedia.org/wiki/Do_Not_Track) is not set in the `user.js` and is left for the user to decide (see [#11](https://github.com/pyllyukko/user.js/issues/11))
 
 ### Add-ons
 
@@ -454,6 +460,7 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Fully automatic updates are disabled and left to package management systems on Linux. Windows users may want to change this setting.
 * Update check page might incorrectly report Firefox ESR as out-of-date
 * Do No Track must be enabled manually
+* Blocking referers across same eTLD sites breaks some login flows relying on them, consider lowering this pref to 1
 * Blocking 3rd-party cookies breaks a number of payment gateways
 * First-party isolation breaks Microsoft Teams
 * First-party isolation causes HTTP basic auth to ask for credentials for every new tab (see #425)
@@ -603,7 +610,6 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * **[User.js comparator](https://jm42.github.io/compare-user.js/)**
 * **[CVEs for Firefox - mitre.org](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=firefox)**
 * [CVEs for Firefox - cvedetails.com](https://www.cvedetails.com/vulnerability-list/vendor_id-452/product_id-3264/Mozilla-Firefox.html)
-* [ghacksuserjs/ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js): a similar project and great source of information, with different goals and methodology
 * [About:config entries - MozillaZine](http://kb.mozillazine.org/About:config_entries)
 * [Security and privacy-related preferences - MozillaZine](http://kb.mozillazine.org/Category:Security_and_privacy-related_preferences)
 * [Diff between various Firefox .js configurations in upcoming releases](https://cat-in-136.github.io/) **([RSS](https://cat-in-136.github.io/feed.xml))**

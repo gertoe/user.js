@@ -16,7 +16,8 @@
 // NOTICE: Disabling ServiceWorkers breaks Firefox Sync
 // Unknown security implications
 // CVE-2016-5259, CVE-2016-2812, CVE-2016-1949, CVE-2016-5287 (fixed)
-//user_pref("dom.serviceWorkers.enabled",				false);
+// FIXME:
+user_pref("dom.serviceWorkers.enabled",				false);
 
 // PREF: Disable web notifications
 // https://support.mozilla.org/en-US/questions/1140439
@@ -113,14 +114,16 @@ user_pref("dom.telephony.enabled",				false);
 user_pref("beacon.enabled",					false);
 
 // PREF: Disable clipboard event detection (onCut/onCopy/onPaste) via Javascript
+// https://web.archive.org/web/20210416195937/https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/dom.event.clipboardevents.enabled
+// https://github.com/pyllyukko/user.js/issues/287
 // NOTICE: Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
-// https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/dom.event.clipboardevents.enabled
 user_pref("dom.event.clipboardevents.enabled",			false);
 
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
-// NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
 // https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3
-//user_pref("dom.allow_cut_copy", false);
+// https://github.com/pyllyukko/user.js/issues/287
+// NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
+user_pref("dom.allow_cut_copy", false);
 
 // PREF: Disable speech recognition
 // https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html
@@ -177,6 +180,7 @@ user_pref("dom.archivereader.enabled",				false);
 // https://en.wikipedia.org/wiki/WebGL
 // https://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
 // NOTICE: Disabling WebGL breaks WebGL-based websites/applications (windy, meteoblue...)
+// FIXME
 //user_pref("webgl.disabled",					true);
 // PREF: When webGL is enabled, use the minimum capability mode
 //user_pref("webgl.min_capability_mode",				true);
@@ -258,6 +262,10 @@ user_pref("javascript.use_us_english_locale",			true);
 // https://bugzilla.mozilla.org/show_bug.cgi?id=665580
 user_pref("browser.urlbar.trimURLs",				false);
 
+// PREF: Disable preloading of autocomplete URLs.
+// https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+
 // PREF: Don't try to guess domain names when entering an invalid domain name in URL bar
 // http://www-archive.mozilla.org/docs/end-user/domain-guessing.html
 user_pref("browser.fixup.alternate.enabled",			false);
@@ -338,6 +346,7 @@ user_pref("browser.startup.homepage_override.buildID",		"20100101");
 // https://github.com/pyllyukko/user.js/issues/395
 // https://browserleaks.com/fonts
 // https://github.com/pyllyukko/user.js/issues/120
+// FIXME
 //user_pref("browser.display.use_document_fonts",			0);
 
 // PREF: Enable only whitelisted URL protocol handlers
@@ -464,6 +473,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr",	false);
 // PREF: Trusted Recursive Resolver (DNS-over-HTTPS) (disabled)
 // https://wiki.mozilla.org/Trusted_Recursive_Resolver
 //user_pref("network.trr.mode",					0);
+//OFF-BY-CHOICE
 user_pref("network.trr.mode",					5);
 
 // PREF: Disable WebIDE
@@ -655,6 +665,12 @@ user_pref("extensions.pocket.enabled",				false);
 // PREF: Disable "Recommended by Pocket" in Firefox Quantum
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories",	false);
 
+// PREF: Enable Global Privacy Control (GPC) (Firefox >= 120)
+// https://support.mozilla.org/1/firefox/126.0/Linux/en-US/global-privacy-control
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-GPC
+// https://globalprivacycontrol.org/
+user_pref("privacy.globalprivacycontrol.enabled",		true);
+
 /******************************************************************************
  * SECTION: Automatic connections                                             *
  ******************************************************************************/
@@ -721,6 +737,7 @@ user_pref("browser.aboutHomeSnippets.updateUrl",		"");
 
 // PREF: Never check updates for search engines
 // https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_auto-update-checking
+// FIXME:
 //user_pref("browser.search.update",				false);
 
 // PREF: Disable automatic captive portal detection (Firefox >= 52.0)
@@ -751,6 +768,7 @@ user_pref("network.negotiate-auth.allow-insecure-ntlm-v1-https",		false);
 
 // PREF: Enable CSP 1.1 script-nonce directive support
 // https://bugzilla.mozilla.org/show_bug.cgi?id=855326
+// FIXME
 user_pref("security.csp.experimentalEnabled",			true);
 
 // PREF: Enable Content Security Policy (CSP)
@@ -785,7 +803,20 @@ user_pref("privacy.donottrackheader.enabled",		true);
 // https://github.com/pyllyukko/user.js/issues/227
 // https://github.com/pyllyukko/user.js/issues/328
 // https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/
+// https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
+// NOTICE: Blocking referers across same eTLD sites breaks some login flows relying on them, consider lowering this pref to 1
 //user_pref("network.http.referer.XOriginPolicy",		2);
+// FIXME
+//user_pref("network.http.referer.XOriginPolicy",		2);
+user_pref("network.http.referer.XOriginPolicy",		1);
+
+// PREF: Trim HTTP referer headers to only send the scheme, host, and port
+// https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
+user_pref("network.http.referer.trimmingPolicy",	2);
+
+// PREF: When sending Referer across domains, only send scheme, host, and port in the Referer header
+// https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
+user_pref("network.http.referer.XOriginTrimmingPolicy",	2);
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
@@ -808,6 +839,7 @@ user_pref("network.cookie.cookieBehavior",			5);
 // NOTICE: First-party isolation breaks Microsoft Teams
 // NOTICE: First-party isolation causes HTTP basic auth to ask for credentials for every new tab (see #425)
 // NOTICE: First-party isolation breaks PayPal Checkout
+// FIXME
 //user_pref("privacy.firstparty.isolate",				true);
 
 // PREF: Make sure that third-party cookies (if enabled) never persist beyond the session.
@@ -871,6 +903,9 @@ user_pref("privacy.cpd.sessions",				true);
 
 // PREF: Don't remember browsing history
 //user_pref("places.history.enabled",				false);
+
+// PREF: Don't remember recently closed tabs
+//user_pref("browser.sessionstore.max_tabs_undo",		0);
 
 // PREF: Disable disk cache
 // http://kb.mozillazine.org/Browser.cache.disk.enable
@@ -941,7 +976,7 @@ user_pref("browser.helperApps.deleteTempFileOnExit",		true);
 // PREF: Do not create screenshots of visited pages (relates to the "new tab page" feature)
 // https://support.mozilla.org/en-US/questions/973320
 // https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/browser.pagethumbnails.capturing_disabled
-//user_pref("browser.pagethumbnails.capturing_disabled",		true);
+user_pref("browser.pagethumbnails.capturing_disabled",		true);
 
 // PREF: Don't fetch and permanently store favicons for Windows .URL shortcuts created by drag and drop
 // NOTICE: .URL shortcut files will be created with a generic icon
@@ -1291,10 +1326,11 @@ user_pref("security.ssl3.dhe_dss_camellia_256_sha",		false);
 //user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		false); // 0xc014
 //user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",		false); // 0xc00a
 
-// PREF: Fallbacks due compatibility reasons
-user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
-user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
-
+// PREF: Enable X25519Kyber768Draft00 (post-quantum key exchange) [FF Nightly 2024-01-18+]
+// https://datatracker.ietf.org/doc/draft-tls-westerbaan-xyber768d00/
+// https://twitter.com/bwesterb/status/1748017372764475519
+// https://pq.cloudflareresearch.com/
+user_pref("security.tls.enable_kyber",				true);
 
 // PREF: Disable vulnerable/weak ciphers
 user_pref("security.ssl3.rsa_aes_128_sha",	false);
@@ -1409,4 +1445,9 @@ user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
 user_pref("extensions.VimFx.mode.ignore.exit", "<escape>");
 user_pref("extensions.VimFx.mode.normal.scroll_page_down", "D");
 user_pref("extensions.VimFx.mode.normal.scroll_page_up", "U");
+
+// Allow to use legacy cursors (Firefox > 125)
+// Bug #1876366
+// https://hg.mozilla.org/mozilla-central/rev/db5832c0ca43
+user_pref("widget.gtk.legacy-cursors.enabled", true);
 
