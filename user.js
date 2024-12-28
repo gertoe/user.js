@@ -812,7 +812,10 @@ user_pref("network.http.referer.XOriginPolicy",		1);
 
 // PREF: Trim HTTP referer headers to only send the scheme, host, and port
 // https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
-user_pref("network.http.referer.trimmingPolicy",	2);
+//user_pref("network.http.referer.trimmingPolicy",	2);
+// NOTICE: Breaks e.g. Ebay bids; lowering to 1 works.
+// FIXME
+user_pref("network.http.referer.trimmingPolicy",	1);
 
 // PREF: When sending Referer across domains, only send scheme, host, and port in the Referer header
 // https://wiki.mozilla.org/Privacy/Privacy_Task_Force/firefox_about_config_privacy_tweeks
