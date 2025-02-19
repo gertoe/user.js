@@ -1152,8 +1152,9 @@ user_pref("security.ssl.enable_ocsp_stapling",			true);
 // NOTICE: Firefox falls back on plain OCSP when must-staple is not configured on the host certificate
 user_pref("security.ssl.enable_ocsp_must_staple",		true);
 
-// PREF: Require a valid OCSP response for OCSP enabled certificates
+// PREF: Require a valid OCSP response for OCSP enabled certificates (disabled)
 // https://groups.google.com/forum/#!topic/mozilla.dev.security/n1G-N2-HTVA
+// https://www.feistyduck.com/newsletter/issue_121_the_slow_death_of_ocsp
 // Disabling this will make OCSP bypassable by MitM attacks suppressing OCSP responses
 // NOTICE: `security.OCSP.require` will make the connection fail when the OCSP responder is unavailable
 // NOTICE: `security.OCSP.require` is known to break browsing on some [captive portals](https://en.wikipedia.org/wiki/Captive_portal)
@@ -1162,6 +1163,7 @@ user_pref("security.ssl.enable_ocsp_must_staple",		true);
 // Increase OCSP timeout to maximum for slow connections
 user_pref("security.OCSP.timeoutMilliseconds.soft", 5000);
 user_pref("security.OCSP.timeoutMilliseconds.hard", 20000);
+//user_pref("security.OCSP.require",				true);
 
 // PREF: Disable TLS Session Tickets
 // https://www.blackhat.com/us-13/briefings.html#NextGen
@@ -1226,6 +1228,12 @@ user_pref("browser.ssl_override_behavior",			1);
 // https://wiki.mozilla.org/Trusted_Recursive_Resolver#ESNI
 // https://en.wikipedia.org/wiki/Server_Name_Indication#Security_implications_(ESNI)
 user_pref("network.security.esni.enabled",			true);
+
+// PREF: Disable the Enterprise Roots preference
+// https://support.mozilla.org/en-US/kb/how-disable-enterprise-roots-preference
+// https://github.com/pyllyukko/user.js/issues/560
+user_pref("security.certerrors.mitm.auto_enable_enterprise_roots",	false);
+user_pref("security.enterprise_roots.enabled",				false);
 
 /******************************************************************************
  * SECTION: Cipher suites                                                     *
